@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,19 +13,18 @@
     <title>Rescaf - Food & Restauratn Template</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png'%}" type="image/x-icon">
 
-    <!-- ========== Start Stylesheet ========== -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/flaticon-set.css" rel="stylesheet" />
-    <link href="assets/css/magnific-popup.css" rel="stylesheet" />
-    <link href="assets/css/owl.carousel.min.css" rel="stylesheet" />
-    <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.css" rel="stylesheet" />
-    <link href="assets/css/bootsnav.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet">
-    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -132,7 +132,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img src="assets/img/logo.png" class="logo" alt="Logo">
+                        <img src="{% static 'assets/img/logo.png' %}" class="logo" alt="Logo">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -140,25 +140,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
-                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Home</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Home Version One</a></li>
-                                <li><a href="index-2.html">Home Version Two</a></li>
-                                <li><a href="index-3.html">Home Version Three</a></li>
-                                <li><a href="index-4.html">Home Version Four</a></li>
-                                <li><a href="index-5.html">Home Version Five</a></li>
-                                <li><a href="index-6.html">Home Version Six</a></li>
-                                <li><a href="index-op.html">Onepaeg Version One</a></li>
-                                <li><a href="index-op-2.html">Onepaeg Version Two</a></li>
-                                <li><a href="index-op-3.html">Onepaeg Version Three</a></li>
-                                <li><a href="index-op-4.html">Onepaeg Version Four</a></li>
-                            </ul>
-                        </li>
+                          
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" >About</a>
                                     <ul class="dropdown-menu">
                                         <li><a href="about.html">Version One</a></li>
@@ -617,22 +602,22 @@
 
     <!-- jQuery Frameworks
     ============================================= -->
-    <script src="assets/js/jquery-1.12.4.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/equal-height.min.js"></script>
-    <script src="assets/js/jquery.appear.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/modernizr.custom.13711.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/count-to.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/YTPlayer.min.js"></script>
-    <script src="assets/js/bootsnav.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js'%}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/equal-height.min.js'%}"></script>
+    <script src="{% static 'assets/js/jquery.appear.js' %}'%}"></script>
+    <script src="{% static 'assets/js/jquery.easing.min.js'%}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js'%}"></script>
+    <script src="{% static 'assets/js/modernizr.custom.13711.js'%}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js'%}"></script>
+    <script src="{% static 'assets/js/wow.min.js'%}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js'%}"></script>
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js'%}"></script>
+    <script src="{% static 'assets/js/count-to.js'%}"></script>
+    <script src="{% static 'assets/js/jquery.nice-select.min.js'%}"></script>
+    <script src="{% static 'assets/js/YTPlayer.min.js'%}"></script>
+    <script src="{% static 'assets/js/bootsnav.js'%}"></script>
+    <script src="{% static 'assets/js/main.js'%}"></script>
 
 </body>
 </html>

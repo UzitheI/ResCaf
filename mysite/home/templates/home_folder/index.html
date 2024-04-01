@@ -24,7 +24,7 @@
     <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
     <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
 
@@ -94,7 +94,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown" >Menus</a>
                             <ul class="dropdown-menu">
-                                <li><a href="menu-1.html">Italian</a></li>
+                                <li><a href="{%url 'menu'%}">Italian</a></li>
                                 <li><a href="menu-2.html">Chinese</a></li>
                                 <li><a href="menu-3.html">Indian</a></li>
                                 <li><a href="menu-4.html">Classics</a></li>
