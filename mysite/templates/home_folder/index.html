@@ -1,4 +1,5 @@
 {% load static %}
+<h1>Hello</h1>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,26 +14,26 @@
     <title>Rescaf - Food & Restaurant Template</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static '/assets/img/favicon.png' %}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
-    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
-    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
-    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+    <link href="{% static '/assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+     <link href="{% static '/assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static '/assets/css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static '/assets/css/magnific-popup.css' %}" rel="stylesheet" />
+   <link href="{% static '/assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static '/assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
+     <link href="{% static '/assets/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static '/assets/css/bootsnav.css' %}" rel="stylesheet" />
+   {% comment %}<link href="{% static '/assets/css/style.css'%}" rel="stylesheet"> {% endcomment %}
+     <link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="{% static 'js/html5/html5shiv.min.js' %}"></script>
-      <script src="{% static 'js/html5/respond.min.js' %}"></script>
+      <script src="{% static '/assets/js/html5/html5shiv.min.js' %}"></script>
+      <script src="{% static '/assets/js/html5/respond.min.js' %}"></script>
     <![endif]-->
 
     <!-- ========== Google Fonts ========== -->
@@ -40,6 +41,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
 </head>
+
 
 <body>
 
@@ -70,8 +72,8 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img src="{%static 'assets/img/logo-light.png'%}" class="logo logo-display" alt="Logo">
-                        <img src="{% static 'assets/img/logo.png'%}" class="logo logo-scrolled" alt="Logo">
+                        <img src="{%static '/assets/img/logo-light.png'%}" class="logo logo-display" alt="Logo">
+                        <img src="{% static '/assets/img/logo.png'%}" class="logo logo-scrolled" alt="Logo">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -283,7 +285,7 @@
         </div>
         <!-- Shape -->
         <div class="wavesshape">
-            <img src="{% static 'assets/img/shape.png'%}" alt="Shape">
+            <img src="{% static '/assets/img/shape.png'%}" alt="Shape">
         </div>
         <!-- Shape -->
     </div>
@@ -382,7 +384,7 @@
             <div class="row">
                 <div class="services-items services-carousel owl-carousel owl-theme text-center text-light">
                     <!-- Single Item -->
-                    <div class="item bg-cover" style="background-image: url(assets/img/800x600.png);">
+                    <div class="item bg-cover" style="background-image: url(/assets/img/800x600.png);">
                         <div class="box">
                             <i class="flaticon-dinner-table"></i>
                             <h4>Fine Dining</h4>
@@ -393,7 +395,7 @@
                     </div>
                     <!-- End Single Item -->
                     <!-- Single Item -->
-                    <div class="item bg-cover" style="background-image: url(assets/img/800x600.png);">
+                    <div class="item bg-cover" style="background-image: url(/assets/img/800x600.png);">
                         <div class="box">
                             <i class="flaticon-champagne-glass"></i>
                             <h4>Party and Event</h4>

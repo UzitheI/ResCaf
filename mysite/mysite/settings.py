@@ -59,7 +59,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,13 +78,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.getenv('NAME'),
+#         'USER':'uziP',
+#         'PASSWORD':os.getenv('PASSWORD'),
+#         'HOST':os.getenv('HOST'),
+#     }
+# }
+
+DATABASE_DIR = os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('NAME'),
-        'USER':'uziP',
-        'PASSWORD':os.getenv('PASSWORD'),
-        'HOST':os.getenv('HOST'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': DATABASE_DIR,
     }
 }
 
@@ -126,6 +134,8 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR /'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
