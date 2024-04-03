@@ -5,7 +5,7 @@ class OrderForm(forms.ModelForm):
     
     class Meta:
         model=Cuisine
-        fields=['customer_name','cuisine_name','customer_phone','price','alcohol_content','description','ordered_on']
+        fields=['customer_name','cuisine_name','customer_phone','price','alcohol_content','description',]
     
 class BookingForm(forms.ModelForm):
     class Meta:

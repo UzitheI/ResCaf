@@ -91,8 +91,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASE_DIR = os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': DATABASE_DIR,
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rescaf_database' ,
+        'USER': 'uziP',
+        'PASSWORD':os.getenv('PASSWORD'),
+        'HOST':os.getenv('HOST'),
     }
 }
 
@@ -141,3 +144,7 @@ STATIC_ROOT = os.path.join(BASE_DIR /'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL='/login/'
+LOGIN_REDIRECT_URL='/home/'
+LOGOUT_REDIRECT_URL='/login/'

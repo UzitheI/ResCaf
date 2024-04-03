@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +11,15 @@
 
     <ul>
         {% for customer in cuisine_list%}
-        <li>{{customer.customer_name}}</li>
-        <li>{{customer.cuisine_name}}</li>
-        <li>{{customer.price}}</li>
-        <li>{{customer.alcohol_content}}</li>
-        <li>{{customer.description}}</li>
-        <li>{{customer.ordered_on}}</li>
+        <a href="{%url 'customer_update' customer.order_id%}">Update</a>
+        <a href="">Delete</a>
+        <p>{{customer.customer_name}}</p>
+        <p>{{customer.cuisine_name}}</p>
+        <p>{{customer.price}}</p>
+        <p>{{customer.alcohol_content}}</p>
+        <p>{{customer.description}}</p>
+        <p>{{customer.ordered_on}}</p>
+        <br>
         {%endfor%}
     </ul>
 </body>
