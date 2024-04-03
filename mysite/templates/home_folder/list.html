@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Items</title>
+</head>
+<body>
+    <h1>User Items</h1>
+
+    <ul>
+        {% for customer in cuisine_list%}
+        <li>{{customer.customer_name}}</li>
+        <li>{{customer.cuisine_name}}</li>
+        <li>{{customer.price}}</li>
+        <li>{{customer.alcohol_content}}</li>
+        <li>{{customer.description}}</li>
+        <li>{{customer.ordered_on}}</li>
+        {%endfor%}
+    </ul>
+</body>
+</html>
