@@ -5,31 +5,27 @@ from django.utils import timezone
 # Create your models here.
 
 class Cuisine(models.Model):
-    name=models.CharField(unique=True,max_length=255)
-    customer=models.ForeignKey(User,on_delete=models.CASCADE)
-    slug=models.SlugField(max_length=100,unique=True)
+    order_id=models.AutoField(primary_key=True)
+    customer_name=models.CharField(max_length=255)
+    customer_phone=models.CharField(max_length=244)
+    cuisine_name=models.CharField(max_length=245)
     price=models.FloatField()
     alcohol_content=models.BooleanField()
     description=models.CharField(max_length=255)
     ordered_on=models.DateField(default=timezone.now)
 
-    def get_absolute_url(self):
-        return reverse("model_detail", args=[self.slug])
+class customer_details(models.Model):
+    customer_id=models.ForeignKey(Cuisine, on_delete=models.CASCADE, related_name='cuisine_id')
+    customer_name = models.ForeignKey(Cuisine, on_delete=models.CASCADE, related_name='cuisine_customer_name')
+    customer_phone = models.ForeignKey(Cuisine, on_delete=models.CASCADE, related_name='cuisine_customer_phone')
 
-    class Meta:
-        ordering= ['-ordered_on']
 
-    def __str__(self):
-        return self.name   
- 
+class BookATable(models.Model):
+    name=models.CharField(max_length=233)
+    customer_email=models.EmailField()
+    numberOfPeople=models.IntegerField()
+    dateOfBooking=models.DateTimeField()
 
-class Italian(Cuisine):
-    pass
 
-class Client(models.Model):
-    client_name=models.CharField(max_length=100)
-    ordered_dish=models.ManyToManyField(Cuisine)
-    client_email=models.EmailField(max_length=254,null=True)
-    
 
 
