@@ -15,7 +15,7 @@ class IndexView(CreateView):
     template_name='home_folder/index.html'
     success_url=reverse_lazy('list')
 
-# def employee_list(request):
+# deSCADE)f employee_list(request):
 #     context = {'employee_list' :Employee.objects.all()}
 #     return render(request,"employee_register/employee_list.html",context)
 
