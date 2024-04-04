@@ -10,17 +10,22 @@
     <h1>User Items</h1>
 
     <ul>
-        {% for customer in cuisine_list%}
-        <a href="{%url 'customer_update' customer.order_id%}">Update</a>
-        <a href="">Delete</a>
-        <p>{{customer.customer_name}}</p>
-        <p>{{customer.cuisine_name}}</p>
-        <p>{{customer.price}}</p>
-        <p>{{customer.alcohol_content}}</p>
-        <p>{{customer.description}}</p>
-        <p>{{customer.ordered_on}}</p>
-        <br>
-        {%endfor%}
+        {% for customer in cuisine_list %}
+        <li>
+            <a href="{% url 'customer_update' customer.pk %}">Update</a>
+            <form method="post" action="{% url 'customer_delete' customer.pk %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+            <p>{{ customer.customer_name }}</p>
+            <p>{{ customer.cuisine_name }}</p>
+            <p>{{ customer.price }}</p>
+            <p>{{ customer.alcohol_content }}</p>
+            <p>{{ customer.description }}</p>
+            <p>{{ customer.ordered_on }}</p>
+            <br>
+        </li>
+        {% endfor %}
     </ul>
 </body>
 </html>
