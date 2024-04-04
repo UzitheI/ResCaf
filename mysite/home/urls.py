@@ -13,7 +13,8 @@ urlpatterns = [
     path('blog',views.BlogView.as_view(),name='blog'),
     path('order',views.OrderCreateView.as_view(),name='order'),
     path('list',views.listView.as_view(),name='list'),
-    path('<int:order_id>/',views.OrderUpdateView.as_view(),name='customer_update'),
+    path('<int:pk>/',views.OrderUpdateView.as_view(),name='customer_update'),
+    path('delete/<int:pk>/',views.OrderDeleteView.as_view(),name='customer_delete'),
 ]
 
 
