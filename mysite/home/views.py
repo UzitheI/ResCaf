@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView,CreateView,ListView,UpdateView
+from django.shortcuts import render,redirect
+from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
 from . models import Cuisine,BookATable
 from .forms import OrderForm,BookingForm
 from django.urls import reverse_lazy
@@ -59,8 +59,17 @@ class OrderUpdateView(UpdateView):
     form_class=OrderForm
     template_name='home_folder/place_your_order.html'
     success_url=reverse_lazy('list')
-    
 
+class OrderDeleteView(DeleteView):
+    model=Cuisine
+    success_url=reverse_lazy('list')
+    template_name="home_folder/cuisine_confirm_delete.html"
+
+
+    def get_object(self):
+        """Override get_object to get the specific employee instance."""
+        pk = self.kwargs.get('pk')
+        return Cuisine.objects.get(pk=pk)
 
 
 # def employee_form (request,id=0):
