@@ -13,6 +13,9 @@ urlpatterns = [
     path('blog',views.BlogView.as_view(),name='blog'),
     path('order',views.OrderCreateView.as_view(),name='order'),
     path('list',views.listView.as_view(),name='list'),
+    path('tablelist',views.TableView.as_view(),name='tablelist'),
+    path('table/<int:pk>/',views.TableUpdatView.as_view(),name='table_update'),
+    # path('table/delete/<int:pk>/',views.TableDeleteView.as_view(),name='table_delete'),
     path('<int:pk>/',views.OrderUpdateView.as_view(),name='customer_update'),
     path('delete/<int:pk>/',views.OrderDeleteView.as_view(),name='customer_delete'),
 ]
