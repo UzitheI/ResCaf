@@ -13,7 +13,7 @@ class IndexView(CreateView):
     model=BookATable
     form_class=BookingForm
     template_name='home_folder/index.html'
-    success_url=reverse_lazy('list')
+    success_url=reverse_lazy('table')
 
 # deSCADE)f employee_list(request):
 #     context = {'employee_list' :Employee.objects.all()}
@@ -46,6 +46,11 @@ class listView(ListView):
     template_name = 'home_folder/list.html'
     context_object_name='cuisine_list'
     
+class TableView(ListView):
+    model=Cuisine
+    template_name = 'home_folder/table.html'
+    context_object_name='client_table'
+    
 
 
 class OrderCreateView(CreateView):
@@ -71,6 +76,13 @@ class OrderDeleteView(DeleteView):
         pk = self.kwargs.get('pk')
         return Cuisine.objects.get(pk=pk)
 
+class TableUpdatView(UpdateView):
+    model=BookATable
+    form_class=BookingForm
+    template_name="home_folder/index.html"
+    success_url=reverse_lazy('tablelist')
+
+# class TableDeleteView(DeleteView):
 
 # def employee_form (request,id=0):
 #     if request.method== 'GET':
