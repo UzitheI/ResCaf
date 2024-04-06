@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book A Table</title>
+</head>
+<body>
+    <ul>
+        {% for table in client_table  %}
+        <li>
+            <a href="{% url 'table_update' table.pk %}">Update</a>
+            <form method="post" action="{% url 'table_delete' table.pk %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+            <p>{{ table.name }}</p>
+            <p>{{ table.customer_email}}</p>
+            <p>{{ table.numberOfPeople }}</p>
+            <p>{{ table.dateOfBooking }}</p>
+            <br>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
