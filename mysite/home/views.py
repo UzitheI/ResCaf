@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
-from . models import Cuisine,BookATable
-from .forms import OrderForm,BookingForm
+from . models import BookATable
+from .forms import BookingForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
@@ -41,40 +41,73 @@ class BlogView(TemplateView):
     template_name='home_folder/blog-single.html'
   # Assuming Cuisine is your custom model
 
-class listView(ListView):
-    model=Cuisine
-    template_name = 'home_folder/list.html'
-    context_object_name='cuisine_list'
+# class listView(ListView):
+#     model=Cuisine
+#     template_name = 'home_folder/list.html'
+#     context_object_name='cuisine_list'
     
-class TableView(ListView):
-    model=Cuisine
-    template_name = 'home_folder/table.html'
-    context_object_name='client_table'
+# class TableView(ListView):
+#     model=Cuisine
+#     template_name = 'home_folder/table.html'
+#     context_object_name='client_table'
     
 
 
-class OrderCreateView(CreateView):
-    model=Cuisine
-    form_class=OrderForm
-    template_name='home_folder/place_your_order.html'
-    success_url=reverse_lazy('list')
+# class OrderCreateView(CreateView):
+#     model=Cuisine
+#     form_class=OrderForm
+#     template_name='home_folder/place_your_order.html'
+#     success_url=reverse_lazy('list')
 
-class OrderUpdateView(UpdateView):
-    model=Cuisine
-    form_class=OrderForm
-    template_name='home_folder/place_your_order.html'
-    success_url=reverse_lazy('list')
+# class OrderUpdateView(UpdateView):
+#     model=Cuisine
+#     form_class=OrderForm
+#     template_name='home_folder/place_your_order.html'
+#     success_url=reverse_lazy('list')
 
-class OrderDeleteView(DeleteView):
-    model=Cuisine
-    success_url=reverse_lazy('list')
-    template_name="home_folder/cuisine_confirm_delete.html"
+# class OrderDeleteView(DeleteView):
+#     model=Cuisine
+#     success_url=reverse_lazy('list')
+#     template_name="home_folder/cuisine_confirm_delete.html"
 
 
-    def get_object(self):
-        """Override get_object to get the specific employee instance."""
-        pk = self.kwargs.get('pk')
-        return Cuisine.objects.get(pk=pk)
+#     def get_object(self):
+#         """Override get_object to get the specific employee instance."""
+#         pk = self.kwargs.get('pk')
+#         return Cuisine.objects.get(pk=pk)class listView(ListView):
+#     model=Cuisine
+#     template_name = 'home_folder/list.html'
+#     context_object_name='cuisine_list'
+    
+# class TableView(ListView):
+#     model=Cuisine
+#     template_name = 'home_folder/table.html'
+#     context_object_name='client_table'
+    
+
+
+# class OrderCreateView(CreateView):
+#     model=Cuisine
+#     form_class=OrderForm
+#     template_name='home_folder/place_your_order.html'
+#     success_url=reverse_lazy('list')
+
+# class OrderUpdateView(UpdateView):
+#     model=Cuisine
+#     form_class=OrderForm
+#     template_name='home_folder/place_your_order.html'
+#     success_url=reverse_lazy('list')
+
+# class OrderDeleteView(DeleteView):
+#     model=Cuisine
+#     success_url=reverse_lazy('list')
+#     template_name="home_folder/cuisine_confirm_delete.html"
+
+
+#     def get_object(self):
+#         """Override get_object to get the specific employee instance."""
+#         pk = self.kwargs.get('pk')
+#         return Cuisine.objects.get(pk=pk)
 
 class TableUpdatView(UpdateView):
     model=BookATable
