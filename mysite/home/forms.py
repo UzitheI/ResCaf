@@ -1,11 +1,16 @@
 from django import forms 
-from .models import Cuisine,BookATable
+from .models import BookATable
 
-class OrderForm(forms.ModelForm):
+# class OrderForm(forms.ModelForm):
     
-    class Meta:
-        model=Cuisine
-        fields=['customer_name','cuisine_name','customer_phone','price','alcohol_content','description',]
+#     class Meta:
+#         model=Cuisine
+#         fields= '__all__'
+
+#         def __init__(self,*args,**kwargs):
+#             super(OrderForm,self).__init__(*args,**kwargs)
+#             available_cuisines=AvailableCuisines.objects.all()
+            
     
 class BookingForm(forms.ModelForm):
     class Meta:
