@@ -1,23 +1,14 @@
-from django.shortcuts import render, redirect, reverse
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
- 
-# Views
-@login_required
-def home(request):
-    return render(request, "home_folder/success.html", {})
- 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username = username, password = password)
-            login(request, user)
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'home_folder/register.html', {'form': form})
+from .forms import UserRegistrationForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
+class RegisterView(SuccessMessageMixin, CreateView):
+    template_name= 'home_folder/register.html'
+    success_url= reverse_lazy('login')
+    form_class= UserRegistrationForm
+    
+    success_message='Your Profile was Created Successfully'
