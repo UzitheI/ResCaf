@@ -1,0 +1,67 @@
+.OrderFormList{
+    display: flex;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* border: 2px solid black ; */
+    padding-right: 16em;
+    padding-left: 16em;
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid black;
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+    width: calc(100% - 20px);
+    padding: 15px 10px;
+    border:2px solid black;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(0, 0%, 98%);
+    color: #333333;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border:2px solid black;
+}
+
+form button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
