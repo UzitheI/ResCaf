@@ -1,0 +1,59 @@
+.menuList {
+    display: flex;
+    flex-wrap: wrap;  /* Allow items to wrap on smaller screens */
+    gap: 10px;  /* Add spacing between cards */
+    margin: 0 auto;  /* Center the list horizontally */
+  }
+  
+  /* Style the individual dish items */
+  .dish-item {
+    background-color: #fff;  /* White background */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    border-radius: 5px;  /* Rounded corners */
+    padding: 15px;  /* Add some padding for content */
+    width: calc(33% - 10px);  /* Adjust width based on columns (3 columns) */
+    text-align: center;  /* Center content within the card */
+    transition: transform 0.2s ease-in-out;  /* Add hover effect */
+  }
+  
+  /* Style the dish item on hover */
+  .dish-item:hover {
+    transform: scale(1.05);  /* Increase size slightly on hover */
+  }
+  
+  /* Style the dish name (h3) */
+  .dish-item h3 {
+    margin: 5px 0;  /* Add some margin above and below */
+    font-weight: bold;  /* Bold font for emphasis */
+  }
+  
+  /* Style the dish price (h3) */
+  .dish-item .dish-price {  /* Add a class for styling price specifically */
+    color: #333;  /* Adjust price color */
+    margin-bottom: 10px;  /* Add some space below price */
+  }
+  
+  /* Style the image */
+  .dish-item img {
+    width: 100%;  /* Make image fill the card width */
+    height: 150px;  /* Set image height */
+    object-fit: cover;  /* Resize image to fit while maintaining aspect ratio */
+  }
+  
+  /* Style the "Add to Cart" button */
+  .dish-item a {
+    display: block;  /* Make the link behave like a button */
+    background-color: #007bff;  /* Blue button color */
+    color: #fff;  /* White text color */
+    padding: 10px 15px;  /* Add padding for the button */
+    border: none;  /* Remove button border */
+    border-radius: 3px;  /* Rounded corners for the button */
+    text-decoration: none;  /* Remove underline from link */
+    cursor: pointer;  /* Indicate clickable behavior */
+    margin-top: 10px;  /* Add some space above the button */
+  }
+  
+  /* Style the button on hover */
+  .dish-item a:hover {
+    background-color: #0069d9;  /* Darken button color on hover */
+  }

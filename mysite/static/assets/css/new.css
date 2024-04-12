@@ -1,13 +1,13 @@
 .OrderFormList{
-    display: flex;
     padding-top: 40px;
     padding-bottom: 40px;
     /* border: 2px solid black ; */
     padding-right: 16em;
     padding-left: 16em;
     justify-content: space-between;
-    background-color: #f0f0f0;
+    background-color: white;
     font-family: Arial, sans-serif;
+    display: flex;
 }
 
 form {
@@ -65,3 +65,82 @@ form button:hover {
     background-color: #45a049;
 }
 
+/* Style the menu list container */
+.item-card {
+    display: flex; /* Allow cards to be displayed side-by-side */
+    flex-wrap: wrap; /* Wrap cards on smaller screens */
+    margin: 1rem; /* Add margin between cards */
+  }
+  
+  .dish-card {
+    position: relative; /* Enable background image positioning */
+    width: 300px; /* Adjust card width (between small and medium) */
+    height: 250px; /* Adjust card height (adjust as needed) */
+    margin: 1rem; /* Add margin between cards */
+    overflow: hidden; /* Hide overflowing content */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .dish-image {
+    position: absolute; /* Position image as background */
+    top: 0;
+    left: 0;
+    width: 100%; /* Fill card width */
+    height: 100%; /* Fill card height */
+    object-fit: cover; /* Ensure image covers the entire card */
+    opacity: 0.7; /* Set background image opacity */
+    transition: opacity 0.3s ease-in-out; /* Hover effect for opacity */
+  }
+  
+  .dish-card:hover .dish-image {
+    opacity: 1; /* Increase opacity on hover */
+  }
+  
+  .card-content {
+    position: absolute; /* Position content on top of image */
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: #fff; /* Content text color */
+    transition: transform 0.3s ease-in-out; /* Hover effect for card pop-out */
+  }
+  
+  .dish-card:hover .card-content {
+    transform: translateY(-10px); /* Content pops out on hover */
+  }
+  
+  .dish-name {
+    font-family: 'Open Sans', sans-serif; /* Beautiful font for header */
+    font-size: 1.5rem; /* Adjust header font size */
+    margin-bottom: 0.5rem; /* Add space below header */
+  }
+  
+  .dish-description {
+    font-family: 'Roboto', sans-serif; /* Beautiful font for description */
+    font-size: 0.8rem; /* Adjust description font size */
+    line-height: 1.5; /* Adjust line spacing */
+    margin-bottom: 1rem; /* Add space below description */
+  }
+  
+  .dish-price {
+    font-weight: bold; /* Highlight price */
+    margin-bottom: 0.5rem; /* Add space below price */
+  }
+  
+  .price-tag {
+    font-size: 1.2rem; /* Adjust price tag font size */
+    margin-right: 0.5rem; /* Add space between tag and price */
+  }
+  
+  .button-container {
+    display: flex; /* Arrange buttons horizontally */
+    justify-content: space-between; /* Space buttons evenly */
+  }
+  
+  .image-button, .delete-button {
+    display: inline-block; /* Display buttons inline */
+    padding: 4px;
+  }
+  
