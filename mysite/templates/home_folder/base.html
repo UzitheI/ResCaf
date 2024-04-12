@@ -287,16 +287,8 @@
             </div>
         </div>
     </div>
-    <div class="OrderFormList">
-        <div class="Form">
-
-            {%block content%}
-            {%endblock%}
-        </div>
-        <div>
-            {%block list%}
-            {%endblock%}
-        </div>
+    <div class="OrderFormList" style="display: flex;">
+        <div class="form">{%block content%} {%endblock%} {%block list%}{%endblock%}</div>
     </div>
     <!-- End Breadcrumb -->
     <footer class="bg-dark">

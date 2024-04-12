@@ -25,6 +25,7 @@
     <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet" />
      <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+     <link href="{% static 'assets/css/menu.css' %}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -69,7 +70,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{%url 'index'%}">
                         <img src="{%static '/assets/img/logo-light.png'%}" class="logo logo-display" alt="Logo">
                         <img src="{% static '/assets/img/logo.png'%}" class="logo logo-scrolled" alt="Logo">
                     </a>
@@ -79,47 +80,20 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown">
-                                    <a href="{% url 'about'%}">About</a>
-                                </li>
-                                <li><a href="{% url 'chef'%}">Chef</a></li>
-                                <li><a href="{% url 'contact'%}">Contact</a></li>
-                            </ul>
-                        </li>
                         <li><a href="{%url 'reservation'%}">Reservation</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" >Menus</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{%url 'menu'%}">Italian</a></li>
-                                <li><a href="menu-2.html">Chinese</a></li>
-                                <li><a href="menu-3.html">Indian</a></li>
-                                <li><a href="menu-4.html">Classics</a></li>
-                            </ul>
+                            <a href="{%url 'menu'%}" >Menus</a>
                         </li>  
-                        <li class="dropdown">
-                            <a href="{%url 'gallery'%}" >Gallery</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="{%url 'blog'%}">Blog</a>
-                        </li>
-                        <li>
-                         <a href="{% url 'contact'%}">contact</a>
-                        </li>
                         <li><a href="{%url 'register' %}" >Sign Up</a></li>
-                        {% comment %} {%for user in User%}
-                        {%if user.is_active == true %}
-                        <li>
-                            <p>{{ user.username }}</p>
-
-                        </li>
-                        {%endif%}
-                        {%endfor%} {% endcomment %}
 
                         <li class="dropdown">
                             <a href="{%url 'createDish'%}">Add Item</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{%url 'createDish'%}">Leave A Review</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{%url 'createDish'%}">Guest</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -212,7 +186,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="">Order Now</a>
+                                            <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="{%url 'menu'%}">Order Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -429,174 +403,17 @@
                     </div>
                 </div>
             </div>
-            <div class="food-menu-area text-center">
-                <div class="row">
-                    <div class="col-md-12 food-menu-content">
-                        <div class="mix-item-menu text-center">
-                            <button class="active" data-filter="*">All</button>
-                            <button data-filter=".pancakes">Pancakes</button>
-                            <button data-filter=".sandwiches">Sandwiches</button>
-                            <button data-filter=".brunch">Brunch</button>
-                            <button data-filter=".vegetarian">Vegetarian</button>
-                            <button data-filter=".meat">Meat</button>
-                        </div>
-                        <!-- End Mixitup Nav-->
-
-                        <div class="row text-center masonary">
-                            <div id="portfolio-grid" class="menu-lists text-center col-3">
-                                <!-- Single Item -->
-                                <div class="item-single pf-item pancakes meat">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <a href="#">
-                                                <img src="assets/img/800x600.png" alt="Thumb">
-                                            </a>
-                                            <div class="price">
-                                                <h5>$5.90</h5>
-                                            </div>
-                                        </div>
-                                        <div class="info">
-                                            <h4><a href="#">Crispy Crust Pizzeria</a></h4>
-                                            <span>Mutton / Olive Oil / Salt</span>
-                                            <p>
-                                                Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-                                            </p>
-                                            <div class="button">
-                                                <a href="#">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Item -->
-                                <!-- Single Item -->
-                                <div class="item-single pf-item sandwiches vegetarian">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <a href="#">
-                                                <img src="assets/img/800x600.png" alt="Thumb">
-                                            </a>
-                                            <div class="price">
-                                                <h5>$18.10</h5>
-                                            </div>
-                                        </div>
-                                        <div class="info">
-                                            <h4><a href="#">Luger Burger</a></h4>
-                                            <span>Beef / Olive Oil / Salt</span>
-                                            <p>
-                                                Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-                                            </p>
-                                            <div class="button">
-                                                <a href="#">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Item -->
-                                <!-- Single Item -->
-                                <div class="item-single pf-item sandwiches brunch">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <a href="#">
-                                                <img src="assets/img/800x600.png" alt="Thumb">
-                                            </a>
-                                            <div class="price">
-                                                <h5>$6.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="info">
-                                            <h4><a href="#">Fries McDonald's</a></h4>
-                                            <span>Chicken / Olive Oil / Salt</span>
-                                            <p>
-                                                Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-                                            </p>
-                                            <div class="button">
-                                                <a href="#">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Item -->
-                                <!-- Single Item -->
-                                <div class="item-single pf-item brunch">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <a href="#">
-                                                <img src="assets/img/800x600.png" alt="Thumb">
-                                            </a>
-                                            <div class="price">
-                                                <h5>$11.50</h5>
-                                            </div>
-                                        </div>
-                                        <div class="info">
-                                            <h4><a href="#">Chicken Popeyes</a></h4>
-                                            <span>Mutton / Olive Oil / Salt</span>
-                                            <p>
-                                                Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-                                            </p>
-                                            <div class="button">
-                                                <a href="#">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Item -->
-                                <!-- Single Item -->
-                                <div class="item-single pf-item meat pancakes">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <a href="#">
-                                                <img src="assets/img/800x600.png" alt="Thumb">
-                                            </a>
-                                            <div class="price">
-                                                <h5>$25.00</h5>
-                                            </div>
-                                        </div>
-                                        <div class="info">
-                                            <h4><a href="#">Chicken Sandwich</a></h4>
-                                            <span>Chicken / Olive Oil / Salt</span>
-                                            <p>
-                                                Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-                                            </p>
-                                            <div class="button">
-                                                <a href="#">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Item -->
-                                <!-- Single Item -->
-                                <div class="item-single pf-item sandwiches vegetarian">
-                                    <div class="item">
-                                        <div class="thumb">
-                                            <a href="#">
-                                                <img src="assets/img/800x600.png" alt="Thumb">
-                                            </a>
-                                            <div class="price">
-                                                <h5>$9.10</h5>
-                                            </div>
-                                        </div>
-                                        <div class="info">
-                                            <h4><a href="#">Salmon Steak</a></h4>
-                                            <span>Beef / Olive Oil / Salt</span>
-                                            <p>
-                                                Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-                                            </p>
-                                            <div class="button">
-                                                <a href="#">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Item -->
-                            </div>
-                        </div>
-                    </div>
+            <div class="menuList">
+                {%for dish in dishes%}
+                <div class="dish-item">
+                    <h3>{{dish.name}}</h3>
+                    <h3>{{dish.price}}</h3>
+                    <h3>{{dish.description}}</h3>
+                    <img src="{{dish.image}}" alt=Image>
+                    <a href="#">Add to Cart</a>
                 </div>
+                {%endfor%}
             </div>
-        </div>
-    </div>
-    <!-- End Food Menu -->
-
     <!-- Start Offer
     ============================================= -->
     <div class="offer-area">
@@ -663,106 +480,40 @@
             <div class="row">
                 <div class="chef-items">
                     <!-- Single Item -->
+                    {%for chef in chefs%}
                     <div class="col-md-4 single-item">
                         <div class="item">
                             <div class="thumb">
-                                <img src="assets/img/800x600.png" alt="Thumb">
+                                <img src="{{chef.image}}" alt="Thumb">
                             </div>
                             <div class="info">
                                 <div class="overlay">
-                                    <h4>Jessica Jones</h4>
-                                    <span>chef</span>
+                                    <h4>{{chef.name}}</h4>
+                                    <span>{{chef.position}}</span>
                                 </div>
                                 <div class="content">
                                     <p>
-                                        Explain ten man uncivil engaged conduct. Am likewise betrayed as declared absolute do.
+                                        {{chef.description}}
                                     </p>
                                     <ul>
                                         <li class="facebook">
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="{{chef.facebook}}"><i class="fab fa-facebook-f"></i></a>
                                         </li>
                                         <li class="twitter">
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
+                                            <a href="{{chef.twitter}}"><i class="fab fa-twitter"></i></a>
                                         </li>
                                         <li class="pinterest">
-                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                            <a href="{{chef.pinterest}}"><i class="fab fa-pinterest-p"></i></a>
                                         </li>
                                         <li class="linkedin">
-                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="{{chef.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="col-md-4 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/800x600.png" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <div class="overlay">
-                                    <h4>Ahel Natasha</h4>
-                                    <span>Patissier</span>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        Explain ten man uncivil engaged conduct. Am likewise betrayed as declared absolute do.
-                                    </p>
-                                    <ul>
-                                        <li class="facebook">
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li class="twitter">
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li class="pinterest">
-                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                        </li>
-                                        <li class="linkedin">
-                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="col-md-4 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/800x600.png" alt="Thumb">
-                            </div>
-                            <div class="info">
-                                <div class="overlay">
-                                    <h4>Gabriela Beckett</h4>
-                                    <span>cook</span>
-                                </div>
-                                <div class="content">
-                                    <p>
-                                        Explain ten man uncivil engaged conduct. Am likewise betrayed as declared absolute do.
-                                    </p>
-                                    <ul>
-                                        <li class="facebook">
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li class="twitter">
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li class="pinterest">
-                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                        </li>
-                                        <li class="linkedin">
-                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {%endfor%}
                     <!-- End Single Item -->
                 </div>
             </div>
@@ -979,6 +730,7 @@
 
     <!-- Start Footer 
     ============================================= -->
+    <div class="full-footer">
     <footer class="bg-dark">
         <div class="container">
             <div class="row">
@@ -1123,6 +875,7 @@
         </div>
         <!-- End Footer Bottom -->
     </footer>
+</div>
     <!-- End Footer -->
 
     <!-- jQuery Frameworks
