@@ -93,7 +93,7 @@ DATABASE_DIR = os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rescaf_database' ,
+        'NAME': 'res2' ,
         'USER': 'uziP',
         'PASSWORD':os.getenv('PASSWORD'),
         'HOST':os.getenv('HOST'),

@@ -24,7 +24,7 @@ from mysite.views import RegisterView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',include("home.urls")),
-    path('menu/',include("menu.urls")),
+    path('menu/',include("menu.urls", namespace='menu')),
     path('login/', auth_views.LoginView.as_view(template_name="home_folder/login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
