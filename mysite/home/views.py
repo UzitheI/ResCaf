@@ -1,10 +1,8 @@
-from django.db.models.query import QuerySet
-from django.shortcuts import render,redirect
+
 from django.views.generic import TemplateView,CreateView,ListView,UpdateView,DeleteView
-from . models import BookATable, ChefDetails
+from . models import BookATable, ChefDetails, BlogDetails
 from .forms import BookingForm
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from menu.models import Dish
     
 
@@ -14,19 +12,20 @@ class IndexView(ListView):
 
     def get_queryset(self):
         return None
-    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['dishes']= Dish.objects.all()
-        context["chefs"] = ChefDetails.objects.all() 
+        context["chefs"] = ChefDetails.objects.all()
+        context["blogs"]= BlogDetails.objects.all()
         return context
+
 class BookingView(CreateView):
     model= BookATable
     form_class= BookingForm
     template_name="home_folder/index.html"
     success_url=reverse_lazy('table')
-#     context = {'employee_list' :Employee.objects.all()}
+#     context = {'employee_list' :Employee.~objects.all()}
 #     return render(request,"employee_register/employee_list.html",context)
 
 class ReservationView(TemplateView):

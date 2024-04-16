@@ -31,5 +31,4 @@ class BlogDetails(models.Model):
     description=models.CharField(max_length=224)
     header_image=models.CharField(max_length=224)
     writer=models.CharField(max_length=224)
-    date=models.DateField()
-
+    date=models.DateField(default=timezone.now)
