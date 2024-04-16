@@ -1,16 +1,23 @@
-from django.db.models.query import QuerySet
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
-from django.views.generic import CreateView,  ListView, TemplateView, UpdateView, DeleteView
+from django.views.generic import View
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import CreateView,  ListView, TemplateView, UpdateView, DeleteView, RedirectView
 from . models import Dish
 from .forms import DishForm,searchForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Dish, CartItem
+from django.http import HttpResponseRedirect
+import logging
 
+logger = logging.getLogger(__name__)
+
+class ErrorView(TemplateView):
+    template_name="home_folder/error.html"
 class AddDish(CreateView):
     model = Dish
     form_class = DishForm
     template_name = 'home_folder/alldish.html'
-    success_url = reverse_lazy('createDish')
+    success_url = reverse_lazy('menu:createDish')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -28,12 +35,12 @@ class UpdateDish(UpdateView):
     model=Dish 
     form_class=DishForm
     template_name="home_folder/alldish.html"
-    success_url= reverse_lazy('createDish')
+    success_url= reverse_lazy('menu:createDish')
 
 class DeleteDish(DeleteView):
     model=Dish
     template_name="home_folder/delete.html"
-    success_url=reverse_lazy('createDish')
+    success_url=reverse_lazy('menu:createDish')
 
 class MenuView(ListView):
     model= Dish
@@ -44,35 +51,39 @@ class MenuView(ListView):
         context['dishes']=self.get_queryset()
         return context  
 
-# class SearchListView(ListView):
-#     model = Dish
-#     template_name = 'home_folder/alldish.html'
+class AddToCartView(View):
+    def post(self, request, dish_id):
+        dish = Dish.objects.get(id=dish_id)
+        cart_item, created = CartItem.objects.get_or_create(
+            dish=dish, 
+            user=request.user,
+            defaults={'quantity': 1}
+        )
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
+        return redirect('menu:view_cart')
 
-#     def get_queryset(self):
-#         query=self.request.GET.get('q')
-#         if query:
-#             return self.model.objects.filter(name__icontains=query)
+class CartView(ListView):
+    model = CartItem
+    template_name = 'home_folder/cart.html'
+
+    def get_queryset(self):
+        return CartItem.objects.filter(user=self.request.user)
+
+class RemoveFromCart(DeleteView):
+    model=CartItem
+    template_name="home_folder/delete.html"
+    success_url=reverse_lazy('view-cart')
+
+# class CartView(LoginRequiredMixin, TemplateView):
+#     template_name = 'home_folder/cart.html'
 
 #     def get_context_data(self, **kwargs):
-#         context= super().get_context_data(**kwargs)
-#         context['query']=self.request.GET.get('q','')
-#         context['dishes']=self.object_list
+#         context = super().get_context_data(**kwargs)
+#         user_cart, created = CartItem.objects.get_or_create(user=self.request.user)
+#         context['cart_items'] = user_cart
 #         return context
-
-
-
-# def menu_list_view(request):
-#     all_dishes=Dish.objects.all()
-
-#     context={
-#         'all_dishes':all_dishes
-#     }
-#     return render(request, 'menu-1.html',context)
-
-# def fetch_dishes(request, category):
-#     if category== 'all':
-#         dishes=Dish.objects.all()
     
-#     else:
-#         dishes=Dish.objects.filter(category=category)
-#     return JsonResponse({'dishes':dishes})
+#     def post(self, request, *args, **kwargs):
+#         return self.get(request, *args, **kwargs)
