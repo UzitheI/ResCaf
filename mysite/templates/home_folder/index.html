@@ -82,18 +82,18 @@
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
                         <li><a href="{%url 'reservation'%}">Reservation</a></li>
                         <li class="dropdown">
-                            <a href="{%url 'menu'%}" >Menus</a>
+                            <a href="{%url 'menu:menu'%}" >Menus</a>
                         </li>  
                         <li><a href="{%url 'register' %}" >Sign Up</a></li>
 
                         <li class="dropdown">
-                            <a href="{%url 'createDish'%}">Add Item</a>
+                            <a href="{%url 'menu:createDish'%}">Add Item</a>
                         </li>
                         <li class="dropdown">
-                            <a href="{%url 'createDish'%}">Leave A Review</a>
+                            <a href="{%url 'menu:createDish'%}">Leave A Review</a>
                         </li>
                         <li class="dropdown">
-                            <a href="{%url 'createDish'%}">Guest</a>
+                            <a href="{%url 'menu:createDish'%}">Guest</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -186,7 +186,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="{%url 'menu'%}">Order Now</a>
+                                            <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="{%url 'menu:menu'%}">Order Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -410,7 +410,10 @@
                     <h3>{{dish.price}}</h3>
                     <h3>{{dish.description}}</h3>
                     <img src="{{dish.image}}" alt=Image>
-                    <a href="#">Add to Cart</a>
+                    <form action="{%url 'menu:addtoCart' dish.id%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Add to Cart</button>
+                    </form>
                 </div>
                 {%endfor%}
             </div>
@@ -614,6 +617,7 @@
 
     <!-- Start Blog 
     ============================================= -->
+
     <div class="blog-area default-padding">
         <div class="container">
             <div class="row">
@@ -667,59 +671,35 @@
                     <!-- Right Blog -->
                     <div class="col-md-6 flex">
                         <!-- Single Item -->
+                        {%for blog in blogs%}
                         <div class="single-item flex">
                             <div class="thumb">
                                 <a href="#">
-                                    <img src="assets/img/800x600.png" alt="Thumb">
+                                    <img src="{{blog.header_image}}" alt="Thumb">
                                 </a>
                             </div>
                             <div class="info">
                                 <div class="meta">
                                     <ul>
                                         <li>
-                                            <a href="#"><i class="fas fa-user"></i> Admin</a>
+                                            <a href="#"><i class="fas fa-user"></i>{{blog.writer}}</a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fas fa-calendar-alt"></i> 24 Apr, 2019</a>
+                                            <a href="#"><i class="fas fa-calendar-alt"></i>{{blog.date}}</a>
                                         </li>
                                     </ul>
                                 </div>
                                 <h4>
-                                    <a href="#">stimulated cultivated projection possession</a>
+                                    <a href="#">{{blgo.title}}</a>
                                 </h4>
                                 <p>
-                                    Arranging furnished knowledge agreeable so. Fanny as smile up small. It vulgar chatty simple months turned oh at change of.
+                                    {{blog.description}}
                                 </p>
                             </div>
                         </div>
+                        {%endfor%}
                         <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="single-item flex">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="assets/img/800x600.png" alt="Thumb">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="fas fa-user"></i> Admin</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-calendar-alt"></i> 24 Apr, 2019</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h4>
-                                    <a href="#">Difficulty on insensible reasonable in</a>
-                                </h4>
-                                <p>
-                                    Arranging furnished knowledge agreeable so. Fanny as smile up small. It vulgar chatty simple months turned oh at change of. 
-                                </p>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
+                    
                     </div>
                     <!-- End Right Blog -->
                 </div>

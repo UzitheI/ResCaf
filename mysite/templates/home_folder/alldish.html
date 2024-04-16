@@ -30,8 +30,8 @@
                   <p class="dish-description">{{ dish.description }}</p>
                   <p class="dish-price"><span class="price-tag">$</span>{{ dish.price }}</p>
                   <div class="button-container">
-                    <a class="image-button" href="{%url 'updateDish' dish.id%}">Update</a>
-                    <a class="delete-button" method="post" href="{%url 'deleteDish' dish.id %}">Delete</a>
+                    <a class="image-button" href="{%url 'menu:updateDish' dish.id%}">Update</a>
+                    <a class="delete-button" method="post" href="{%url 'menu:deleteDish' dish.id %}">Delete</a>
                   </div>
                 </div>
               </div>
