@@ -53,3 +53,5 @@ class Review(models.Model):
     stars=models.FloatField()
     description=models.TextField()
 
+
+

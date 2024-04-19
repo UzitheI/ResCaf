@@ -82,7 +82,7 @@ class ReservationView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         formi = form.instance
         formi.user= self.request.user
-        formi.table.is_available = False
+        formi.is_available = False
         formi.save()
         return super().form_valid(form)
 
