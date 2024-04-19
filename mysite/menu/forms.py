@@ -1,5 +1,5 @@
 from django import forms
-from . models import Dish
+from . models import Dish, CartItem
 
 
 class DishForm(forms.ModelForm):
@@ -14,5 +14,8 @@ class DishForm(forms.ModelForm):
 class searchForm(forms.Form): 
     query=forms.CharField(label='Search')
 
-
+class cartForm(forms.ModelForm):
+    class Meta:
+        model= CartItem
+        fields=['quantity']
     
