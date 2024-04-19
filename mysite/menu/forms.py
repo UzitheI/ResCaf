@@ -1,5 +1,5 @@
 from django import forms
-from . models import Dish, CartItem
+from . models import Dish, CartItem, UserSuggestions
 
 
 class DishForm(forms.ModelForm):
@@ -18,4 +18,15 @@ class cartForm(forms.ModelForm):
     class Meta:
         model= CartItem
         fields=['quantity']
+
+class UserSuggestionsForm(forms.ModelForm):
+    name = forms.CharField(label='What is the name of your dish?')
+    description = forms.CharField(label='Describe your dish', widget=forms.Textarea)
+    price = forms.FloatField(label='Price of the dish (in $)')
+    image = forms.CharField(label='URL of the dish image')
+
+    class Meta:
+        model = UserSuggestions
+        fields = ['name','description','price','image']
+    
     

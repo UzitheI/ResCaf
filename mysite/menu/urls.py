@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy, include, path
-from . views import RemoveFromCart,MenuView, AddDish, UpdateDish, DeleteDish, AddToCartView, QuantityUpdateView, CartView, ErrorView
+from . views import RemoveFromCart,MenuView, AddDish, UpdateDish, DeleteDish, AddToCartView, QuantityUpdateView, CartView, ErrorView, AddSuggestions, SuggestionUpdateView, SuggestionDeleteView
 from . import views
 
 app_name = 'menu'
@@ -12,5 +12,8 @@ urlpatterns = [
     path('remove/<int:pk>/', RemoveFromCart.as_view(), name='remove_from_cart'),
     path('quantityUpdate/<int:item_id>/', QuantityUpdateView.as_view(), name='quantityUpdate'),
     path('view_cart', CartView.as_view(), name='view_cart'),
-    path('error', ErrorView.as_view(), name="error")
+    path('error', ErrorView.as_view(), name="error"),
+    path('suggestions',AddSuggestions.as_view(), name="addsuggestions"),
+    path('suggUpdate/<int:pk>/',SuggestionUpdateView.as_view(),name="sugg_update"),
+    path('suggDelete/<int:pk>/',SuggestionDeleteView.as_view(),name="sugg_delete")
 ]

@@ -28,3 +28,11 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f'{self.quantity} x {self.dish.name}'
+
+class UserSuggestions(models.Model):
+    name= models.CharField(max_length=200)
+    description=models.TextField()
+    price=models.FloatField()
+    image=models.CharField(max_length=200)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    accepted= models.BooleanField(default=False)
