@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from . models import Dish, CartItem
+from . models import Dish, CartItem,UserSuggestions
 
 class MenuAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -19,3 +19,4 @@ class MenuAdmin(admin.ModelAdmin):
     
 admin.site.register(Dish, MenuAdmin)
 admin.site.register(CartItem)
+admin.site.register(UserSuggestions)
