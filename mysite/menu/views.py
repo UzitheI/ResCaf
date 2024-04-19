@@ -2,7 +2,7 @@ from django.views.generic import View
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView,  ListView, TemplateView, UpdateView, DeleteView, RedirectView
 from . models import Dish
-from .forms import DishForm,searchForm
+from .forms import DishForm,searchForm,cartForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Dish, CartItem
@@ -44,7 +44,7 @@ class DeleteDish(DeleteView):
 
 class MenuView(ListView):
     model= Dish
-    template_name='home_folder/menu-1.html'
+    template_name='home_folder/menu.html'
 
     def get_context_data(self, **kwargs):
         context= super(). get_context_data(**kwargs)
@@ -64,26 +64,38 @@ class AddToCartView(View):
             cart_item.save()
         return redirect('menu:view_cart')
 
-class CartView(ListView):
-    model = CartItem
-    template_name = 'home_folder/cart.html'
+# class CartView(ListView):
+#     model = CartItem
+#     template_name = 'home_folder/cart.html'
 
-    def get_queryset(self):
-        return CartItem.objects.filter(user=self.request.user)
+#     def get_queryset(self):
+#         return CartItem.objects.filter(user=self.request.user)
 
 class RemoveFromCart(DeleteView):
     model=CartItem
     template_name="home_folder/delete.html"
-    success_url=reverse_lazy('view-cart')
+    success_url=reverse_lazy('menu:view_cart')
 
-# class CartView(LoginRequiredMixin, TemplateView):
-#     template_name = 'home_folder/cart.html'
+class CartView(LoginRequiredMixin, CreateView):
+    template_name = 'home_folder/cart.html'
+    form_class = cartForm
+    success_url = reverse_lazy('menu:view_cart')
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         user_cart, created = CartItem.objects.get_or_create(user=self.request.user)
-#         context['cart_items'] = user_cart
-#         return context
-    
-#     def post(self, request, *args, **kwargs):
-#         return self.get(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cart_items'] = CartItem.objects.filter(user=self.request.user)
+        context['total_price'] = sum(item.dish.price * item.quantity for item in context['cart_items'])
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class QuantityUpdateView(UpdateView):
+    model = CartItem
+    form_class = cartForm
+    template_name = "home_folder/cart.html"
+    success_url = reverse_lazy('menu:menuList')
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(CartItem, id=self.kwargs['item_id'])
