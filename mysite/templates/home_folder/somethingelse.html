@@ -1,0 +1,95 @@
+{% extends 'home_folder/base.html' %} {% load static %}
+<div>
+  {% block content %}
+  <h3>Give us your suggestion.</h3>
+  <form action="" method="post" id="create_form">
+    {% csrf_token %} {{ form }}
+    <div>
+      <button type="submit" id="submit_create">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+<div>
+  {% block list %}
+  <div>
+    <h2>Want another check?</h2>
+    <p>Check if the dish you are adding is already present in our catalogue.</p>
+    <form action="" method="get" id="search_form">
+      <label for="search_query">Search by Name:</label>
+      <input
+        type="text"
+        name="q"
+        id="search_query"
+        placeholder="Enter dish name"
+      />
+      <button type="submit">Search</button>
+    </form>
+    {% if request.GET.q %}
+    <h2 class="search-header">Search Results for "{{ request.GET.q }}"</h2>
+    <div class="item-card">
+      {% for dish in dishes %}
+      <div class="dish-card">
+        <img src="{{ dish.image }}" alt="image" class="dish-image" />
+        <div class="card-content">
+          <h2 class="dish-name">{{ dish.name }}</h2>
+          <p class="dish-description">{{ dish.description }}</p>
+          <p class="dish-price">
+            <span class="price-tag">$</span>{{ dish.price }}
+          </p>
+          <div class="button-container">
+            <a class="image-button" href="{%url 'menu:updateDish' dish.id%}"
+              >Update</a
+            >
+            <a
+              class="delete-button"
+              method="post"
+              href="{%url 'menu:deleteDish' dish.id %}"
+              >Delete</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endif %}
+  </div>
+</div>
+<div>
+  <h3>Previous dish additions that you've made:</h3>
+  {% for usersug in usersuggestions %}
+  <div class="dish-card">
+    <img src="{{ usersug.image }}" alt="image" class="dish-image" />
+    <div class="card-content">
+      <h2 class="dish-name">{{ usersug.name }}</h2>
+      <p class="dish-description">{{ usersug.description }}</p>
+      <p class="dish-price">
+        <span class="price-tag">$</span>{{ usersug.price }}
+      </p>
+      <p class="dish-price">
+        <span class="price-tag">
+          {% if usersug.accepted is False %}
+          <span class="price-tag">Status:Not Accepted (Waiting)</span>
+          {% else %}
+          <span class="price-tag">Status:Accepted</span>
+          {% endif %}
+        </span>
+      </p>
+
+      <div class="button-container">
+        <a class="image-button" href="{%url 'menu:sugg_update' usersug.id%}"
+          >Update</a
+        >
+        <a
+          class="delete-button"
+          method="post"
+          href="{%url 'menu:sugg_delete' usersug.id %}"
+          >Delete</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
