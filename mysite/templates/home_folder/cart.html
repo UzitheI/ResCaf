@@ -1,68 +1,47 @@
 <!-- cart/cart.html -->
- 
+{% extends 'home_folder/base.html' %}
+{% load static %}
+
 <html lang="en">
- 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        /* Add CSS styles for flex container and items */
-        .product-list {
-            display: flex;
-            flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
-            justify-content: space-between; /* Space items evenly along the main axis */
-            list-style: none; /* Remove list styles */
-            padding: 0;
-        }
- 
-        .product-item {
-             
-            flex: 1; /* Grow to fill available space evenly */
-             /* Limit item width to avoid overcrowding */
-            margin: 10px; /* Add spacing between items */
-            border: 1px solid #ccc; /* Add a border for visual separation */
-            padding: 10px;
-            text-align: center;
-        }
- 
-        /* Style the "Buy Now" button */
-        .buy-now-button {
-            display: block;
-            margin-top: 10px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
 </head>
- 
 <body>
- 
-    <h1>Your Shopping Cart</h1>
- 
-    <div class="product-list">
- 
-    
- 
-    {% for item in cart_items %}
-    <div class="product-item">
-        <p>{{ item.dish.name }} ({{ item.quantity }})</p>
-        <p>Price: ${{ item.dish.price }}</p>
-        <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+  {% block content %}
+  <div class="cart-container">
+    <h1>Your Cart</h1>
+    <ul class="product-list">
+      {% for item in cart_items %}
+      <li class="product-item">
+        <div class="product-image">
+          <img src="{{item.dish.image}}" alt="{{ item.dish.name }}">
+        </div>
+        <div class="product-info">
+          <h3>{{ item.dish.name }}</h3>
+          <p>{{ item.dish.country_of_origin }}</p>
+          <form action="{% url 'menu:quantityUpdate' item.id %}" method="post" class="quantity-form">
+            {% csrf_token %}
+            <div class="quantity-input">
+              <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="quantity-input-field">
+              <button type="submit" name="action" value="increment" class="quantity-button">Confirm</button>
+            </div>
+          </form>
+          <p class="highlighted">Price: ${{ item.dish.price }}</p>
+          <a href="{% url 'menu:remove_from_cart' item.id %}" class="remove-button">Remove</a>
+        </div>
+      </li>
+      {% empty %}
+      <p>Your cart is empty.</p>
+      {% endfor %}
+    </ul>
+    <div class="cart-summary">
+      <p class="total-price">Total Price: ${{ total_price }}</p>
+      <a href="{% url 'index' %}" class="continue-shopping">Continue Shopping</a>
+      <a href="#" class="checkout-button">Proceed to Checkout</a>
     </div>
-    {% empty %}
-    <p>Your cart is empty.</p>
-    {% endfor %}
- 
-    </div>
- 
-    <p>Total Price: ${{ total_price }}</p>
- 
-    <a href="{% url 'index' %}">Continue Shopping</a>
- 
+  </div>
+  {% endblock %}
 </body>
- 
 </html>

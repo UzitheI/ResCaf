@@ -20,6 +20,8 @@
 <!-- <link href="{% static 'assets/css/style.css'%}" rel="stylesheet" /> -->
   <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="{%static 'assets/css/new.css' %}">
+  <link rel="stylesheet" href="{%static 'assets/css/menu.css' %}">
+  <link rel="stylesheet" href="{%static 'assets/css/blog.css' %}">
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -109,13 +111,27 @@
                 </div>
             </div>
             <!-- End Top Search -->
+    
+
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- End Side Menu -->
+
+        </nav>
+        <!-- End Navigation -->
+         <!-- Header 
+    ============================================= -->
+    <header id="home">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default navbar-fixed dark bootsnav shadow-less">
 
             <div class="container">
 
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
                     </ul>
                 </div>        
@@ -126,8 +142,9 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">
-                        <img src="assets/img/logo.png" class="logo" alt="Logo">
+                    <a class="navbar-brand" href="{%url 'index'%}">
+                        <img src="{%static '/assets/img/logo-light.png'%}" class="logo logo-display" alt="Logo">
+                        <img src="{% static '/assets/img/logo.png'%}" class="logo logo-scrolled" alt="Logo">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -135,80 +152,35 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                        <li><a href="{%url 'reservation'%}">Reservation</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Home</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Home Version One</a></li>
-                                <li><a href="index-2.html">Home Version Two</a></li>
-                                <li><a href="index-3.html">Home Version Three</a></li>
-                                <li><a href="index-4.html">Home Version Four</a></li>
-                                <li><a href="index-5.html">Home Version Five</a></li>
-                                <li><a href="index-6.html">Home Version Six</a></li>
-                                <li><a href="index-op.html">Onepaeg Version One</a></li>
-                                <li><a href="index-op-2.html">Onepaeg Version Two</a></li>
-                                <li><a href="index-op-3.html">Onepaeg Version Three</a></li>
-                                <li><a href="index-op-4.html">Onepaeg Version Four</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >About</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="about.html">Version One</a></li>
-                                        <li><a href="about-2.html">Version Two</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="chef.html">Chef</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="404.html">Error Page</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="reservation.html">Reservation</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" >Menus</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="menu-1.html">Version One</a></li>
-                                <li><a href="menu-2.html">Version Two</a></li>
-                                <li><a href="menu-3.html">Version Three</a></li>
-                                <li><a href="menu-4.html">Version Four</a></li>
-                            </ul>
+                            <a href="{%url 'menu:menuList'%}" >Menus</a>
                         </li>  
+
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" >Gallery</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Grid Colum</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="gallery-grid-2-colum.html">Gallery Two Colum</a></li>
-                                        <li><a href="gallery-grid-3-colum.html">Gallery Three Colum</a></li>
-                                        <li><a href="gallery-grid-4-colum.html">Gallery Four Colum</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Masonary Colum</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="gallery-masonary-2-colum.html">Gallery Two Colum</a></li>
-                                        <li><a href="gallery-masonary-3-colum.html">Gallery Three Colum</a></li>
-                                        <li><a href="gallery-masonary-4-colum.html">Gallery Four Colum</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <a href="{%url 'menu:createDish'%}">Add Item</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Blog</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-standard.html">Blog Standard</a></li>
-                                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                <li><a href="blog-single.html">Blog Single Standard</a></li>
-                                <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                                <li><a href="blog-single-right-sidebar.html">Single Right Sidebar</a></li>
-                            </ul>
+                            <a href="{%url 'menu:createDish'%}">Leave A Review</a>
                         </li>
-                        <li>
-                            <a href="contact.html">contact</a>
+                        <li class="dropdown">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}}</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{%url 'login'%}">Login</a></li>
+                                    <li><a href="{%url 'register'%}">Register</a></li>
+                                    <li><form action="{% url 'logout' %}" method="post" style="margin: 0px; padding: 0px; background: transparent; border: none;">
+                                        {% csrf_token %}
+                                        <button type="submit" style="margin: 0px; padding: 2px; border-radius: 0px; background: transparent; color: black; display: flex; justify-content: start; border: none;">LOGOUT</button>
+                                      </form><li>
+                                    <li><a href="{%url 'register' %}" >Sign Up</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="{%url 'menu:view_cart'%}" class="cart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                  </svg></a>
+                            </li>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -278,7 +250,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Add a New Item</h1>
                     <ul class="breadcrumb">
                         <li><a href="{%url 'index'%}"><i class="fas fa-home"></i> Home</a></li>
                         <li class="active">Menus</li>

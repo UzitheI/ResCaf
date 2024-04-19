@@ -1,0 +1,56 @@
+{%extends 'home_folder/base.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    {% block content %}
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Submit</button>
+        </form>
+        <div class="blog-posts">
+            <h1>Your previous writings:</h1>
+            <div class="row">
+                {% for blog in blogs %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-card">
+                        <div class="blog-thumb">
+                            <a href="#">
+                                <img src="{{ blog.header_image }}" alt="{{ blog.title }}">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-user"></i>{{ blog.writer_name }}</a></li>
+                                    <li><a href="#"><i class="fas fa-calendar-alt"></i>{{ blog.date }}</a></li>
+                                </ul>
+                            </div>
+                            <h3 class="blog-title"><a href="#">{{ blog.title }}</a></h3>
+                            <p>{{ blog.description }}</p>
+                            <p>Blog Approval Status:{{ blog.is_approved}}</p>
+                            
+                            <a class="btn circle btn-theme border btn-md" href="#">Read More</a>
+                            <a href="{%url 'blog_update' blog.id%}">Update</a>
+                            <a href="{%url 'blog_delete' blog.id%}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+</html>

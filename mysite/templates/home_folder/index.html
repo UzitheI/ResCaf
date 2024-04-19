@@ -25,7 +25,9 @@
     <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet" />
      <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+     <link href="{% static 'assets/css/new.css' %}" rel="stylesheet" />
      <link href="{% static 'assets/css/menu.css' %}" rel="stylesheet" />
+
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -82,18 +84,36 @@
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
                         <li><a href="{%url 'reservation'%}">Reservation</a></li>
                         <li class="dropdown">
-                            <a href="{%url 'menu:menu'%}" >Menus</a>
+                            <a href="{%url 'menu:menuList'%}" >Menu</a>
                         </li>  
-                        <li><a href="{%url 'register' %}" >Sign Up</a></li>
 
                         <li class="dropdown">
                             <a href="{%url 'menu:createDish'%}">Add Item</a>
                         </li>
                         <li class="dropdown">
-                            <a href="{%url 'menu:createDish'%}">Leave A Review</a>
+                            <a href="{%url 'review'%}">Leave A Review</a>
                         </li>
                         <li class="dropdown">
-                            <a href="{%url 'menu:createDish'%}">Guest</a>
+                            <a href="{%url 'blog'%}">Write for Us</a>
+                        </li>
+                        <li class="dropdown">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}}</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{%url 'login'%}">Login</a></li>
+                                    <li><a href="{%url 'register'%}">Register</a></li>
+                                    <li><form action="{% url 'logout' %}" method="post" style="margin: 0px; padding: 0px; background: transparent; border: none;">
+                                        {% csrf_token %}
+                                        <button type="submit" style="margin: 0px; padding: 2px; border-radius: 0px; background: transparent; color: black; display: flex; justify-content: start; border: none;">LOGOUT</button>
+                                      </form><li>
+                                    <li><a href="{%url 'register' %}" >Sign Up</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="{%url 'menu:view_cart'%}" class="cart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                  </svg></a>
+                            </li>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -186,7 +206,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="{%url 'menu:menu'%}">Order Now</a>
+                                            <a data-animation="animated slideInUp" class="btn btn-theme effect btn-md" href="{%url 'menu:menuList'%}">Order Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -318,9 +338,10 @@
                                 <i class="fas fa-utensils"></i>
                             </div>
                             <h3>Book a table</h3>
+                            <p>"Check reservation for Table description"<p>
                             <form action="" method="post" autocomplete="off">
                                 {%csrf_token%}
-                                {{form}}
+                                {{form.as_p}}
                                 <button type='submit'>Submit</button>
                             </form>
                         </div>
@@ -339,7 +360,7 @@
             <div class="row">
                 <div class="services-items services-carousel owl-carousel owl-theme text-center text-light">
                     <!-- Single Item -->
-                    <div class="item bg-cover" style="background-image: url(/assets/img/800x600.png);">
+                    <div class="item bg-cover" style="background-image: url('{% static '/assets/img/800x600.png' %}');">
                         <div class="box">
                             <i class="flaticon-dinner-table"></i>
                             <h4>Fine Dining</h4>
@@ -403,19 +424,24 @@
                     </div>
                 </div>
             </div>
-            <div class="menuList">
-                {%for dish in dishes%}
-                <div class="dish-item">
-                    <h3>{{dish.name}}</h3>
-                    <h3>{{dish.price}}</h3>
-                    <h3>{{dish.description}}</h3>
-                    <img src="{{dish.image}}" alt=Image>
-                    <form action="{%url 'menu:addtoCart' dish.id%}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Add to Cart</button>
-                    </form>
+            <div class="menu-body">
+                {%block content%}
+                <div class="menuList">
+                    {%for dish in dishes%}
+                    <div class="dish-item">
+                        <h3 class="dish-name">{{dish.name}}</h3>
+                        <h3 class="dish-price">{{dish.price}}</h3>
+                        <h3 class="dish-description">{{dish.description}}</h3>
+                        <img src="{{dish.image}}" alt=Image id="dish-image">
+                        <form action="{%url 'menu:addtoCart' dish.id%}" method="post" id="submit-form-cart">
+                            {% csrf_token %}
+                            <button type="submit" id="add-to-cart-btn"> Add to Cart</button>
+                        </form>
+                    </div>
+                    {%endfor%}
                 </div>
-                {%endfor%}
+                </div>
+                {%endblock%}
             </div>
     <!-- Start Offer
     ============================================= -->
@@ -539,80 +565,30 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="testimonial-items testimonials-carousel owl-carousel owl-theme text-center">
-                        <!-- Single Item -->
-                        <div class="item">
-                            <h4>Delicious Burger</h4>
-                            <p>
-                                Finished no horrible blessing landlord dwelling dissuade if. Rent fond am he in on read. Anxious cordial demands settled entered in do to colonel. 
-                            </p>
-                            <div class="thumb">
-                                <img src="assets/img/100x100.png" alt="Thumb">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <div class="clients-info">
-                                <h5>Ahel John</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
+            <div class="testimonial-item">
+                {% for review in reviews %}
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <h4>{{ review.dish.name }}</h4>
+                        <p>{{ review.description }}</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h5>{{ review.user }}</h5>
+                            <div class="rating">
+                                {% for i in "12345" %}
+                                  {% if forloop.counter <= review.stars %}
+                                    <span class="star-active">&#9733;</span>
+                                  {% else %}
+                                    <span class="star-inactive">&#9733;</span>
+                                  {% endif %}
+                                {% endfor %}
+                              </div>
                         </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <h4>Awesome pizza</h4>
-                            <p>
-                                Finished no horrible blessing landlord dwelling dissuade if. Rent fond am he in on read. Anxious cordial demands settled entered in do to colonel. 
-                            </p>
-                            <div class="thumb">
-                                <img src="assets/img/100x100.png" alt="Thumb">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <div class="clients-info">
-                                <h5>Michel Athem</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
-                        <!-- Single Item -->
-                        <div class="item">
-                            <h4>Delicious Burger</h4>
-                            <p>
-                                Finished no horrible blessing landlord dwelling dissuade if. Rent fond am he in on read. Anxious cordial demands settled entered in do to colonel. 
-                            </p>
-                            <div class="thumb">
-                                <img src="assets/img/100x100.png" alt="Thumb">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <div class="clients-info">
-                                <h5>Ahel John</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Item -->
                     </div>
                 </div>
+                {% endfor %}
             </div>
-        </div>
-    </div>
     <!-- End Testimonials -->
 
     <!-- Start Blog 
@@ -638,7 +614,7 @@
                         <div class="single-item">
                             <div class="thumb">
                                 <a href="#">
-                                    <img src="assets/img/800x600.png" alt="Thumb">
+                                    <img src="{% static 'assets/img/800x600.png'%}" alt="Thumb">
                                 </a>
                                 <div class="meta">
                                     <div class="tags">
@@ -669,37 +645,31 @@
                     <!-- End Left Blog -->
 
                     <!-- Right Blog -->
-                    <div class="col-md-6 flex">
-                        <!-- Single Item -->
-                        {%for blog in blogs%}
-                        <div class="single-item flex">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="{{blog.header_image}}" alt="Thumb">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="fas fa-user"></i>{{blog.writer}}</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fas fa-calendar-alt"></i>{{blog.date}}</a>
-                                        </li>
-                                    </ul>
+                    <div class="blog-posts">
+                        <div class="row">
+                            {% for blog in blogs %}
+                            <div class="col-md-6 col-lg-4">
+                                <div class="blog-card">
+                                    <div class="blog-thumb">
+                                        <a href="#">
+                                            <img src="{{ blog.header_image }}" alt="{{ blog.title }}">
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <div class="blog-meta">
+                                            <ul>
+                                                <li><a href="#"><i class="fas fa-user"></i>{{ blog.writer }}</a></li>
+                                                <li><a href="#"><i class="fas fa-calendar-alt"></i>{{ blog.date }}</a></li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="blog-title"><a href="#">{{ blog.title }}</a></h3>
+                                        <p>{{ blog.description }}</p>
+                                        <a class="btn circle btn-theme border btn-md" href="#">Read More</a>
+                                    </div>
                                 </div>
-                                <h4>
-                                    <a href="#">{{blgo.title}}</a>
-                                </h4>
-                                <p>
-                                    {{blog.description}}
-                                </p>
                             </div>
+                            {% endfor %}
                         </div>
-                        {%endfor%}
-                        <!-- End Single Item -->
-                    
                     </div>
                     <!-- End Right Blog -->
                 </div>

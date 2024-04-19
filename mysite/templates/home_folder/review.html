@@ -1,7 +1,37 @@
-{%extends 'home_folder/base.html'%}
+{% extends 'home_folder/base.html' %}
 
-<div>
-    {%block content%}
-    
-    {%endblock%}
+{% block content %}
+<div class="review-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">Write a Review</h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-4">Reviews that you've left in the past</h2>
+                <div class="user-review-list">
+                    {% for review in user_reviews %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ review.dish.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Rated: {{ review.stars }} Stars</h6>
+                            <p class="card-text">{{ review.description }}</p>
+                            <p class="card-text"><small class="text-muted">By: {{ review.user }}</small></p>
+                            <a class="image-button" href="{%url 'review_update' review.id%}">Update</a>
+                            <a class="delete-button" method="post" href="{%url 'review_delete' review.id%}">Delete</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No reviews found.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}

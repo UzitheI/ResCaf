@@ -1,22 +1,22 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="{%static 'assets/css/new.css' %}">
-  <link rel="stylesheet" href="{%static 'assets/css/register.css' %}">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'assets/css/new.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/register.css' %}">
 </head>
-<body class="register_form_body" >
+<body class="register_form_body">
   <p class="sign_up">Sign Up to Order or Book a Table</p>
-  <div >
-
-    <form action="" method="post">
-      {%csrf_token%}
-      {{form}}
-      <button type="submit" class="submit_button">Submit</button>
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}  <!-- Renders the form fields -->
+      <button type="submit" class="submit_button">Login</button>
     </form>
   </div>
-  </body>
+  <a href="{% url 'register' %}" class="register-button">Register</a>
+</body>
 </html>
