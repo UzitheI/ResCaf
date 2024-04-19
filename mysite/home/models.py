@@ -2,13 +2,25 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
-from django.contrib.auth.models import User
-# Create your models here.
+from menu.models import Dish
+
+class Table(models.Model):
+    table_number=models.IntegerField()
+    table_price=models.FloatField()
+    table_description= models.TextField()
+    is_available=models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.table_number)
+    
+
 class BookATable(models.Model):
     name=models.CharField(max_length=233)
     customer_email=models.EmailField()
     numberOfPeople=models.IntegerField()
-    dateOfBooking=models.DateTimeField()
+    dateOfBooking=models.DateTimeField(default=timezone.now)
+    table=models.ForeignKey(Table,on_delete=models.CASCADE, default=None)
+    user=models.ForeignKey(User,on_delete=models.CASCADE, default=None)
 
 class ChefDetails(models.Model):
     name=models.CharField(max_length=244)
@@ -30,5 +42,14 @@ class BlogDetails(models.Model):
     title=models.CharField(max_length=224)
     description=models.CharField(max_length=224)
     header_image=models.CharField(max_length=224)
-    writer=models.CharField(max_length=224)
+    writer_name=models.ForeignKey(User,on_delete=models.CASCADE, default=None)
     date=models.DateField(default=timezone.now)
+    is_approved= models.BooleanField(default=False )
+
+class Review(models.Model):
+    dish=models.ForeignKey(Dish,on_delete=models.CASCADE,default=None,null=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE, default=None, null=True)
+    date_time=models.DateTimeField(default=timezone.now)
+    stars=models.FloatField()
+    description=models.TextField()
+
