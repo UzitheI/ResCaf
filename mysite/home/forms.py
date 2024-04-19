@@ -1,5 +1,5 @@
 from django import forms 
-from .models import BookATable
+from .models import BookATable, Review, Table, BlogDetails
 
 # class OrderForm(forms.ModelForm):
     
@@ -15,9 +15,21 @@ from .models import BookATable
 class BookingForm(forms.ModelForm):
     class Meta:
         model=BookATable
-        fields='__all__'
+        fields=['name','customer_email','numberOfPeople','table']
+        table = forms.ModelChoiceField(
+        queryset=Table.objects.all(),
+        empty_label="Check reservation for Table description",
+        label="Table"
+    )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set default time value for the time field
-        self.fields['dateOfBooking'].initial = '2024-04-02 09:00:00'
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model=BlogDetails
+        fields= ['title','description','header_image']
+
+
+    
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model=Review
+        fields=['dish', 'stars' , 'description']
