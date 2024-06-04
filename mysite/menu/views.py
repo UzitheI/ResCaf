@@ -6,7 +6,6 @@ from .forms import DishForm,searchForm,cartForm, UserSuggestionsForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from .models import Dish, CartItem
-from django.http import HttpResponseRedirect
 import logging
 
 logger = logging.getLogger(__name__)
@@ -109,22 +108,17 @@ class AddToCartView(View):
             cart_item.save()
         return redirect('menu:view_cart')
 
-# class CartView(ListView):
-#     model = CartItem
-#     template_name = 'home_folder/cart.html'
-
-#     def get_queryset(self):
-#         return CartItem.objects.filter(user=self.request.user)
-
 class RemoveFromCart(DeleteView):
     model=CartItem
     template_name="home_folder/delete.html"
     success_url=reverse_lazy('menu:view_cart')
+    
 
 class CartView(LoginRequiredMixin, CreateView):
     template_name = 'home_folder/cart.html'
     form_class = cartForm
     success_url = reverse_lazy('menu:view_cart')
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
