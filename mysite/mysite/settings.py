@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from django.conf import settings 
 from django.conf.urls.static import static
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +44,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'menu',
+    'bootstrap5',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
+    'customadmin',
+
+]
+
+TAILWIND_APP_NAME = 'theme'
+
+INTERNAL_IPS = [
+    os.getenv('INTERNAL_IPS'),
 ]
 
 MIDDLEWARE = [
@@ -53,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -136,7 +151,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static",
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR /'staticfiles')
@@ -145,7 +160,6 @@ STATIC_ROOT = os.path.join(BASE_DIR /'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGIN_URL='/login/'
-LOGIN_REDIRECT_URL='/home/'
-LOGOUT_REDIRECT_URL='/login/'
+LOGOUT_REDIRECT_URL=reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = 'login'
