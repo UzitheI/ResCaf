@@ -1,3 +1,5 @@
+from django.http import HttpRequest
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.views.generic import View
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView,  ListView, TemplateView, UpdateView, DeleteView, RedirectView
@@ -6,6 +8,7 @@ from .forms import DishForm,searchForm,cartForm, UserSuggestionsForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from .models import Dish, CartItem
+from django.contrib.auth.models import User
 import logging
 
 logger = logging.getLogger(__name__)
@@ -96,6 +99,11 @@ class MenuView(ListView):
         return context  
 
 class AddToCartView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_anonymous:
+            return HttpResponseRedirect(reverse_lazy('login'))
+        return super().dispatch(request, *args, **kwargs)
+
     def post(self, request, dish_id):
         dish = Dish.objects.get(id=dish_id)
         cart_item, created = CartItem.objects.get_or_create(
