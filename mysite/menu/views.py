@@ -106,6 +106,7 @@ class AddToCartView(View):
 
     def post(self, request, dish_id):
         dish = Dish.objects.get(id=dish_id)
+
         cart_item, created = CartItem.objects.get_or_create(
             dish=dish, 
             user=request.user,
@@ -114,6 +115,8 @@ class AddToCartView(View):
         if not created:
             cart_item.quantity += 1
             cart_item.save()
+        cart_item.total_amount = cart_item.quantity* dish.price
+        cart_item.save()
         return redirect('menu:view_cart')
 
 class RemoveFromCart(DeleteView):
