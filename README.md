@@ -1,2 +1,2 @@
 # ResCaf
-A restaurant website
+A restaurant website made with DJANGO
