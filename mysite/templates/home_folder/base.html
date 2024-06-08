@@ -8,22 +8,17 @@
     <title>Rescaf - Food & Restauratn Template</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{% static '/assets/img/favicon.png' %}" type="image/x-icon">
- <!-- ========== Start Stylesheet ========== -->
- <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
- <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
-  <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
- <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
- <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
-<link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
- <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
-  <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
- <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
-<!-- <link href="{% static 'assets/css/style.css'%}" rel="stylesheet" /> -->
-  <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
-  <link rel="stylesheet" href="{%static 'assets/css/new.css' %}">
-  <link rel="stylesheet" href="{%static 'assets/css/menu.css' %}">
-  <link rel="stylesheet" href="{%static 'assets/css/blog.css' %}">
+
+        
+        <!-- jvectormap -->
+        <link href="{% static 'assets2/libs/jqvmap/jqvmap.min.css' %}" rel="stylesheet" />
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'assets2/css/bootstrap.min.css'%}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'assets2/css/icons.min.css'%}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'assets2/css/app.min.css'%}" id="app-style" rel="stylesheet" type="text/css" />
     <!-- ========== End Stylesheet ========== -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -37,167 +32,48 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
     {%tailwind_css%}
 </head>
     <body>
-
-    <!-- Preloader Start -->
-    <div class="se-pre-con"></div>
-    <!-- Preloader Ends -->
-    <!-- Header 
-    ============================================= -->
-    <header id="home">
-
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-default attr-border navbar-sticky bootsnav">
-
-            <!-- Start Top Search -->
-            <div class="container">
-                <div class="row">
-                    <div class="top-search">
-                        <div class="input-group">
-                            <form action="#">
-                                <input type="text" name="text" class="form-control" placeholder="Search">
-                                <button type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>  
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Top Search -->
-    
-
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-            <!-- End Side Menu -->
-
-        </nav>
-        <!-- End Navigation -->
-         <!-- Header 
-    ============================================= -->
-    <header id="home">
-
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-default navbar-fixed dark bootsnav shadow-less">
-
-            <div class="container">
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
-                    </ul>
-                </div>        
-                <!-- End Atribute Navigation -->
-
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="{%url 'index'%}">
-                        <img src="{%static '/assets/img/logo-light.png'%}" class="logo logo-display" alt="Logo">
-                        <img src="{% static '/assets/img/logo.png'%}" class="logo logo-scrolled" alt="Logo">
-                    </a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
-                        <li><a href="{%url 'reservation'%}">Reservation</a></li>
-                        <li class="dropdown">
-                            <a href="{%url 'menu:menuList'%}" >Menus</a>
-                        </li>  
-
-                        <li class="dropdown">
-                            <a href="{%url 'menu:createDish'%}">Add Item</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="{%url 'menu:createDish'%}">Leave A Review</a>
-                        </li>
-                        <li class="dropdown">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}}</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{%url 'login'%}">Login</a></li>
-                                    <li><a href="{%url 'register'%}">Register</a></li>
-                                    <li><form action="{% url 'logout' %}" method="post" style="margin: 0px; padding: 0px; background: transparent; border: none;">
-                                        {% csrf_token %}
-                                        <button type="submit" style="margin: 0px; padding: 2px; border-radius: 0px; background: transparent; color: black; display: flex; justify-content: start; border: none;">LOGOUT</button>
-                                      </form><li>
-                                    <li><a href="{%url 'register' %}" >Sign Up</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="{%url 'menu:view_cart'%}" class="cart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                  </svg></a>
-                            </li>
-                        </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div>
-
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <div class="widget">
-                    <h4 class="title">About Us</h4>
-                    <p>
-                        Arrived compass prepare an on as. Reasonable particular on my it in sympathize. Size now easy eat hand how. Unwilling he departure elsewhere dejection at. Heart large seems may purse means few blind.
-                    </p>
-                </div>
-                <div class="widget opening-hours">
-                    <h4 class="title">Openig Hours</h4>
-                    <ul>
-                        <li> 
-                            <span> Mon - Tues :  </span>
-                            <div class="pull-right"> 6.00 am - 10.00 pm </div>
-                        </li>
-                        <li> 
-                            <span> Wednes - Thurs :</span>
-                            <div class="pull-right"> 8.00 am - 6.00 pm </div>
-                        </li>
-                        <li> 
-                            <span> Launch :</span>
-                            <div class="pull-right"> Everyday </div>
-                        </li>
-                        <li> 
-                            <span> Sun : </span>
-                            <div class="pull-right closed"> Closed </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="widget">
-                    <h4 class="title">Our Menus</h4>
-                    <ul>
-                        <li><a href="#">Chees croissants</a></li>
-                        <li><a href="#">Bruschetti</a></li>
-                        <li><a href="#">Awesome Vegetables</a></li>
-                        <li><a href="#">Tasty Snacks</a></li>
-                        <li><a href="#">Meal for whole family</a></li>
-                    </ul>
-                </div>
-                <div class="widget social">
-                    <h4 class="title">Connect With Us</h4>
-                    <ul class="link">
-                        <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                        <li class="dribbble"><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- End Side Menu -->
-
-        </nav>
-        <!-- End Navigation -->
-
+      <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
     </header>
     <div>
     </div>
@@ -415,22 +291,28 @@
 </footer>
     <!-- jQuery Frameworks
     ============================================= -->
-    <script src="{% static 'assets/js/jquery-1.12.4.min.js'%}"></script>
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'assets/js/equal-height.min.js'%}"></script>
-    {% comment %} <script src="{% static 'assets/js/jquery.appear.js' %}'%}"></script> {% endcomment %}
-    <script src="{% static 'assets/js/jquery.easing.min.js'%}"></script>
-    <script src="{% static 'assets/js/jquery.magnific-popup.min.js'%}"></script>
-    <script src="{% static 'assets/js/modernizr.custom.13711.js'%}"></script>
-    <script src="{% static 'assets/js/owl.carousel.min.js'%}"></script>
-    <script src="{% static 'assets/js/wow.min.js'%}"></script>
-    <script src="{% static 'assets/js/isotope.pkgd.min.js'%}"></script>
-    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js'%}"></script>
-    <script src="{% static 'assets/js/count-to.js'%}"></script>
-    <script src="{% static 'assets/js/jquery.nice-select.min.js'%}"></script>
-    <script src="{% static 'assets/js/YTPlayer.min.js'%}"></script>
-    <script src="{% static 'assets/js/bootsnav.js'%}"></script>
-    <script src="{% static 'assets/js/main.js'%}"></script>
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'assets2/libs/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets2/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets2/libs/metismenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'assets2/libs/simplebar/simplebar.min.js' %}"></script>
+    <script src="{% static 'assets2/libs/node-waves/waves.min.js' %}"></script>
+
+    <!-- apexcharts js -->
+    <script src="{% static 'assets2/libs/apexcharts/apexcharts.min.js' %}"></script>
+
+    <!-- jquery.vectormap map -->
+    <script src="{% static 'assets2/libs/jqvmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'assets2/libs/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
+
+    <script src="{% static 'assets2/js/pages/dashboard.init.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#MyModal").modal();
+          });
+    </script>
+
+    <script src="{% static 'assets2/js/app.js' %}"></script>
 </body>
 </html>
 

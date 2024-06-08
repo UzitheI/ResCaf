@@ -27,6 +27,7 @@ class CartItem(models.Model):
     date_added=models.DateTimeField(auto_now_add=True, null=True)
     total_amount = models.FloatField(default=0.0)
     message=models.CharField(max_length=200 ,default="Please Wait! We are processing your Order")
+    is_accepted= models.BooleanField(default=False)
     
 
 class UserSuggestions(models.Model):

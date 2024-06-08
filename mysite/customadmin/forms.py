@@ -1,22 +1,20 @@
 from django import forms 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from menu.models import CartItem
 
 class UserRegistrationForm( UserCreationForm):
-    email=forms.EmailField()
+    model= User, AbstractUser
+    fields= '__all__'
 
+
+class UpdateMessageForm(forms.ModelForm):
+    
     class Meta:
-        model=User 
-        fields= '__all__'
+        model = CartItem
+        fields = ("message","is_accepted")
+        labels= {'message': 'Enter a Message With the Decision'}
 
-
-class UpdateMessageForm(forms.Form):
-    message= forms.CharField( max_length=200, required=True, label="Enter your message:")
-
-    class Meta:
-        model= CartItem
-        fields = ['message']
 
 
 
