@@ -1,0 +1,83 @@
+{% extends 'home_folder/base.html' %}
+
+{% block content %}
+  <style>
+    body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);}
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
+  </style>
+  <h2>Search Results for "{{ search_query }}"</h2>
+  {% if dishes %}
+    <ul>
+      {% for dish in dishes %}
+      <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col col-md-12 pr-md-5 pl-md-5">
+                    <div class="bd-example bd-example-tabs">
+                        <div class="tab-content pt-5 pb-5" id="pills-tabContent">
+                            <div class="tab-pane fade active show" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+                                <div class="container-fluid">
+                                    <div class="row align-items-center justify-content-between">
+                                        <div class="col-12 col-md-5  text-left">
+                                            <h2>{{dish.name}}</h2>
+                                            <p class=" mt-4">{{dish.description}} </p>
+                                            <blockquote class="card  text-left  py-3 px-4 mb-3 mt-4  ">
+                                                <div class="row align-items-center justify-content-between">
+                                                    <div class="col-3  p-md-1 text-center rounded">
+                                                        <img src="{{dish.image}}" class="img-fluid py-0 rounded" alt="features">
+                                                        <footer class="blockquote-footer small p-1"><span class="small">Gordon Ramsay <cite class="font-weight-bold">Rescaf</cite></span></footer>
+                                                    </div>
+                                                    <div class="col-9 position-relative">
+    
+                                                        <p class=" m-0 text-muted small">
+                                                          "The food at this restaurant is absolutely amazing! Each dish is a burst of flavor, and the freshness of the ingredients really stands out. It's a dining experience that leaves you wanting more every time."
+                                                        </p>
+                                                        <i class="fa fa-quote-right fa-2x text-muted pull-right mt-3" aria-hidden="true"></i></div>
+    
+                                                </div>
+                                            </blockquote>
+                                            <form action="{%url 'menu:addtoCart' dish.id%}" method="post" id="submit-form-cart">
+                                              {% csrf_token %}
+                                              <button type="submit" id="add-to-cart-btn"> Add to Cart</button>
+                                          </form>
+                                        </div>
+                                        <div class="col-12 col-md-5 mb-4 ml-md-auto">
+                                            <img alt="image" class="img-fluid img-center mr-auto ml-auto d-none d-md-block" src="{{dish.image}}">
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      {% endfor %}
+    </ul>
+  {% else %}
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 Not Found</h2>
+                <div class="error-details">
+                    Sorry, we dont sell the requested dish.
+                </div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThal4VK49gxkUhDfBiXVpNhXScrfiLH7ihdw&s"/>
+                <div class="error-actions">
+                    <a href="{%url 'index'%}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home </a><a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  {% endif %}
+{% endblock %}
