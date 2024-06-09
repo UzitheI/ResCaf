@@ -12,14 +12,42 @@
 
 <body>
     {% block content %}
-    <div class="container">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Submit</button>
-        </form>
+    <div class="container-fluid py-5">
+        <!-- Tables Section -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 col-xl-8 text-center">
+                <h3 class="fw-bold mb-4">Write for us:</h3>
+                <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+                    numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+                    quisquam eum porro a pariatur veniam.
+                </p>
+            </div>
+        </div>
+        <div class="row container-fluid" style="margin-left:22em;">
+            <div class="col-md-6">
+                <h2 class="mb-4">Write a Review</h2>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
         <div class="blog-posts">
-            <h1>Your previous writings:</h1>
+            <div class="container-fluid py-5">
+                <!-- Tables Section -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10 col-xl-8 text-center">
+                        <h3 class="fw-bold mb-4">Your writings:</h3>
+                        <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+                            numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+                            quisquam eum porro a pariatur veniam.
+                        </p>
+                    </div>
+                </div>
             <div class="row">
                 {% for blog in blogs %}
                 <div class="col-md-6 col-lg-4">
@@ -46,6 +74,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 {% endfor %}
             </div>
         </div>
