@@ -14,7 +14,8 @@ urlpatterns = [
     path('reviewDelete/<int:pk>/',views.ReviewDelete.as_view(),name="review_delete"),
     path('blog',views.BlogView.as_view(), name="blog"),
     path('blogUpdate/<int:pk>/',views.BlogUpdateView.as_view(),name="blog_update"),
-    path('blogDelete/<int:pk>/',views.BlogDeleteView.as_view(),name="blog_delete")
+    path('blogDelete/<int:pk>/',views.BlogDeleteView.as_view(),name="blog_delete"),
+    path('baseView',views.BaseView.as_view(),name="base_cart"),
 ]
 
 
