@@ -9,7 +9,20 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from home.views import BookATable
+from home.models import *
+from menu.models import *
 
+class BaseView(LoginRequiredMixin,ListView):
+    model= CartItem
+    template_name= "home_folder/base.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cart_items'] = CartItem.objects.filter(user=self.request.user)
+        print(context['cart_items'])
+        context['total_price'] = sum(item.dish.price * item.quantity for item in context['cart_items'])
+        return context
+     
 
 class IndexView(CreateView, LoginRequiredMixin):
     template_name='home_folder/index.html'
