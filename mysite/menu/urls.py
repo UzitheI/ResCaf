@@ -15,4 +15,5 @@ urlpatterns = [
     path('suggestions',views.AddSuggestions.as_view(), name="addsuggestions"),
     path('suggUpdate/<int:pk>/',views.SuggestionUpdateView.as_view(),name="sugg_update"),
     path('suggDelete/<int:pk>/',views.SuggestionDeleteView.as_view(),name="sugg_delete"),
+    path('search/', views.SearchResultsView.as_view(), name='search'),
 ]
