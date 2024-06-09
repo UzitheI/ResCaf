@@ -71,17 +71,18 @@ Welcome to the Restaurant Website project! This repository contains the source c
 - **Homepage:** Visit `http://127.0.0.1:8000/` to view the homepage.
 
 ## Project Structure
-|-mysite
-|--customadmin #dashboard and auth 
-|--home #Table Booking, Chef Details, Blog Details, Review
-|--menu #Dish, Cart
-|--mysite
-|--static
-||--assets #contains dependencies for index and base
-||--assets2 #contains dependecies for admin dashboard
-|--templates
-||--home_folder
-|--theme #contains files for tailwindcss
+mysite/
+├── customadmin/ # Dashboard and authentication
+├── home/ # Table booking, chef details, blog details, review
+├── menu/ # Dish, cart
+├── mysite/ # Project settings and configurations
+├── static/
+│ ├── assets/ # Contains dependencies for index and base
+│ ├── assets2/ # Contains dependencies for admin dashboard
+├── templates/
+│ └── home_folder/
+├── theme/ # Contains files for TailwindCSS
+└── manage.py
 
 
 
