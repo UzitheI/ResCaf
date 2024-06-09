@@ -37,6 +37,21 @@ class AddSuggestions(LoginRequiredMixin, CreateView):
         context['query'] = query 
         return context
 
+class SearchResultsView(ListView):
+    model = Dish
+    template_name = 'home_folder/search_result.html'
+    context_object_name = 'dishes'
+
+    def get_queryset(self):
+        search_query = self.request.GET.get('q', '')
+        return Dish.objects.filter(name__icontains=search_query)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('q', '')
+        # print(context['dishes'])
+        return context
+    
 class SuggestionUpdateView(UpdateView):
     model= UserSuggestions
     form_class= UserSuggestionsForm
@@ -134,6 +149,7 @@ class CartView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cart_items'] = CartItem.objects.filter(user=self.request.user)
+        print(context['cart_items'])
         context['total_price'] = sum(item.dish.price * item.quantity for item in context['cart_items'])
         return context
 
