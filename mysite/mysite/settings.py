@@ -13,15 +13,20 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-load_dotenv()
 from django.conf import settings 
 from django.conf.urls.static import static
 from django.urls import reverse_lazy
 import mimetypes
 
+load_dotenv()
+
+
 mimetypes.add_type("text/css", ".css", True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env_path = Path(BASE_DIR) / '.env'
+load_dotenv(dotenv_path=env_path)
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -100,26 +105,20 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.getenv('NAME'),
-#         'USER':'uziP',
-#         'PASSWORD':os.getenv('PASSWORD'),
-#         'HOST':os.getenv('HOST'),
-#     }
-# }
 
-DATABASE_DIR = os.path.join(BASE_DIR, 'db.sqlite3')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'res2' ,
-        'USER': 'uziP',
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
         'PASSWORD':os.getenv('PASSWORD'),
         'HOST':os.getenv('HOST'),
     }
 }
+
+
 
 
 # Password validation
