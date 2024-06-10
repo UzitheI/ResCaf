@@ -96,14 +96,18 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}}</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{%url 'login'%}">Login</a></li>
-                                    <li><a href="{%url 'register'%}">Register</a></li>
-                                    <li><form action="{% url 'logout' %}" method="post" style="margin: 0px; padding: 0px; background: transparent; border: none;">
-                                        {% csrf_token %}
-                                        <button type="submit" style="margin: 0px; padding: 2px; border-radius: 0px; background: transparent; color: black; display: flex; justify-content: start; border: none;">LOGOUT</button>
-                                      </form><li>
-                                    <li><a href="{%url 'register' %}" >Sign Up</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li>
+                                        <form action="{% url 'logout' %}" method="post" style="margin: 0; padding: 0; background: transparent; border: none;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="logout-button">LOGOUT</button>
+                                        </form>
+                                    </li>
+                                    {% endif %}
+                                    <li><a href="{% url 'register' %}">Sign Up</a></li>
                                 </ul>
+                                
                             </li>
                             <li class="dropdown">
                                 <a href="{%url 'menu:view_cart'%}" class="cart"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -336,9 +340,26 @@
                             <h3>Book a table</h3>
                             <p>"Check reservation for Table description"<p>
                             <form action="" method="post" autocomplete="off">
-                                {%csrf_token%}
-                                {{form.as_p}}
-                                <button type='submit'>Submit</button>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="{{ form.name.id_for_label }}">Name</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.customer_email.id_for_label }}">Email</label>
+                                    {{ form.customer_email }}
+                                </div>
+                                <div class="form_third">
+                                <div class="form-group">
+                                    <label for="{{ form.numberOfPeople.id_for_label }}">People:</label>
+                                    {{ form.numberOfPeople }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.table.id_for_label }}">Table:</label>
+                                    {{ form.table }}
+                                </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                     </div>
