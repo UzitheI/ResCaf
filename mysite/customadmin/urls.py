@@ -13,5 +13,11 @@ urlpatterns = [
     path('dashboard/', DashBoardView.as_view(), name='dashboard'),
     path('dashboard/cart_items',CartItemDB.as_view(),name="cartitems_dashboard"),
     path('dashboard/cart_items/<int:pk>/', UpdateMessage.as_view(), name="messageUpdate"),
+    path('dashboard/reviews',ReviewDB.as_view(),name='review_dashboard'),
+    path('dashboard/review_update/<int:pk>/',ReviewUpdateDB.as_view(),name='review_update'),
+    path('dashboard/review_delete/<int:pk>/',ReviewDeleteDB.as_view(),name='review_delete'),
+    path('dashboard/blogs',BlogsViewDB.as_view(),name='blog_dashboard'),
+    path('dashboard/blog_update/<int:pk>/',BlogUpdateViewDB.as_view(),name='blog_update'),
+    path('dashboard/blog_delete/<int:pk>/',BlogDeleteDB.as_view(),name='blog_delete'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
