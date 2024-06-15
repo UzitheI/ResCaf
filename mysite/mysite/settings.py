@@ -58,9 +58,13 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'customadmin',
     'django_bootstrap_icons',
+    'crispy_forms',
+    'crispy_bootstrap4',
 
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
@@ -160,6 +164,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR /'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
