@@ -6,8 +6,6 @@ from menu.models import Dish
 
 
 
-
-
 class Table(models.Model):
     table_number=models.IntegerField()
     table_price=models.FloatField()
