@@ -40,6 +40,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 
 # Application definition
 
@@ -60,12 +62,21 @@ INSTALLED_APPS = [
     'django_bootstrap_icons',
     'crispy_forms',
     'crispy_bootstrap4',
+    'cked',
 
 ]
+
+ELFINDER_OPTIONS = {
+    ## required options
+    'root': os.path.join(PROJECT_ROOT, 'media', 'uploads'),
+    'URL': '/media/uploads/',
+}
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 TAILWIND_APP_NAME = 'theme'
+
 
 INTERNAL_IPS = [
     os.getenv('INTERNAL_IPS'),

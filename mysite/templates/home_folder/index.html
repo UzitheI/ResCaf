@@ -82,6 +82,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                        <li><a href="#about-us-section">About Us</a></li>
                         <li><a href="{%url 'reservation'%}">Reservation</a></li>
                         <li class="dropdown">
                             <a href="{%url 'menu:menuList'%}" >Menu</a>
@@ -302,7 +303,7 @@
 
     <!-- Start About
     ============================================= -->
-    <div class="about-area default-padding">
+    <section class="about-area default-padding" id= 'about-us-section'>
         <div class="container">
             <div class="row">
                 <div class="about-items">
@@ -672,6 +673,7 @@
                     <div class="blog-posts">
                         <div class="row">
                             {% for blog in blogs %}
+                            {%if blog.is_accepted %}
                             <div class="col-md-6 col-lg-4">
                                 <div class="blog-card">
                                     <div class="blog-thumb">
@@ -692,6 +694,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {%endif%}
                             {% endfor %}
                         </div>
                     </div>
