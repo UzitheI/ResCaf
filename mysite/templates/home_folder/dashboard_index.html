@@ -35,7 +35,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box text-center">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{%url 'index'%}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="{%static '/assets/img/logo-light.png'%}" alt="logo-sm-dark" height="22">
                                 </span>
@@ -44,7 +44,7 @@
                                 </span>
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{%url 'index'%}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{%static '/assets/img/logo-light.png'%}" alt="logo-sm-light" height="22">
                                 </span>
@@ -154,10 +154,7 @@
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="{%url 'admin_logout'%}"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                             </div>
                         </div>
 
