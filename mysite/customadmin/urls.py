@@ -4,6 +4,8 @@ from .views import *
 from django.contrib.auth.views import *
 from customadmin.views import LoginLogic
 from django.conf.urls.static import static
+from django.urls import reverse
+
 
 
 urlpatterns = [
@@ -19,5 +21,9 @@ urlpatterns = [
     path('dashboard/blogs',BlogsViewDB.as_view(),name='blog_dashboard'),
     path('dashboard/blog_update/<int:pk>/',BlogUpdateViewDB.as_view(),name='blog_update'),
     path('dashboard/blog_delete/<int:pk>/',BlogDeleteDB.as_view(),name='blog_delete'),
+    path('admin_register/',AdminRegisterView.as_view(),name='admin_register'),
+    path('admin-login/',AdminLoginView.as_view(), name= 'admin_login'),
+     path('admin-logout/', LogoutView.as_view(next_page= reverse_lazy('admin_login')), name='admin_logout'),
+        
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
