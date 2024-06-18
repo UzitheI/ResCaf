@@ -107,7 +107,7 @@
                                     </li>
                                     {% endif %}
                                     <li><a href="{% url 'register' %}">Sign Up</a></li>
-                                    {%if user.is_authenticated%}
+                                    {%if user.is_superuser%}
                                     <li>
                                         <a href= "{%url 'dashboard' %}">Go To Dashboard</a>
                                     </li>
