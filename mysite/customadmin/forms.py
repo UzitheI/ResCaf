@@ -32,3 +32,10 @@ class BlogUpdateForm(forms.ModelForm):
         label={'title':'Enter your title:', 'description':'Enter your description:', 'header_image':'Enter a suitable image:', 'is_approved':'Do you want the blog to appear?'}
 
 
+class AdminRegisterForm(UserRegistrationForm):
+    model= User
+    fields=('username','email','password')
+    
+
+    
+    
