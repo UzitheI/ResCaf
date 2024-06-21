@@ -40,11 +40,15 @@
                                     {%if user.is_staff is false%}
                                     <p>You must be a superuser or a staff to login.</p>
                                     {%endif%}
-                                    <form class="form-horizontal" method='post' action="{%url 'admin_login'%}">
+                                    <form class="form-horizontal" method='post' action="{% url 'admin_login'%}">
                                         {%csrf_token%}
                                         {{form.as_p}}
                                         <button type="submit">Submit</button>
                                     </form>
+                                    <div style="display:flex; justify-content:between;">
+                                        <p>Don't have an account?</p>
+                                        <a href="{%url 'admin_register'%}">Register</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
