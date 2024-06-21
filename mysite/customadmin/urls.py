@@ -5,6 +5,9 @@ from django.contrib.auth.views import *
 from customadmin.views import LoginLogic
 from django.conf.urls.static import static
 from django.urls import reverse
+from django.contrib.auth import views as auth_views 
+
+
 
 
 
@@ -23,7 +26,11 @@ urlpatterns = [
     path('dashboard/blog_delete/<int:pk>/',BlogDeleteDB.as_view(),name='blog_delete'),
     path('admin_register/',AdminRegisterView.as_view(),name='admin_register'),
     path('admin-login/',AdminLoginView.as_view(), name= 'admin_login'),
-     path('admin-logout/', LogoutView.as_view(next_page= reverse_lazy('admin_login')), name='admin_logout'),
+    path('admin-logout/', LogoutView.as_view(next_page= reverse_lazy('admin_login')), name='admin_logout'),
+     path('reset-password',auth_views.PasswordResetView.as_view(template_name='home_folder/password_reset.html'),name='reset_password'),
+    path('reset-password-sent',auth_views.PasswordResetDoneView.as_view(template_name='home_folder/password_sent.html'),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='home_folder/password_form.html'),name='password_reset_confirm'),
+    path('reset-password-complete',auth_views.PasswordResetCompleteView.as_view(template_name='home_folder/password_done.html'),name='password_reset_complete'),
         
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
