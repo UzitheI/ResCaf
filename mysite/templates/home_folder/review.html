@@ -1,39 +1,6 @@
 {% extends 'home_folder/base.html' %}
 
 {% block content %}
-{% comment %} <div class="review-body">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="mb-4">Write a Review</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <h2 class="mb-4">Reviews that you've left in the past</h2>
-                <div class="user-review-list">
-                    {% for review in user_reviews %}
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ review.dish.name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Rated: {{ review.stars }} Stars</h6>
-                            <p class="card-text">{{ review.description }}</p>
-                            <p class="card-text"><small class="text-muted">By: {{ review.user }}</small></p>
-                            <a class="image-button" href="{%url 'review_update' review.id%}">Update</a>
-                            <a class="delete-button" method="post" href="{%url 'review_delete' review.id%}">Delete</a>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <p>No reviews found.</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> {% endcomment %}
 <style>
     form {
         background-color: #f8f9fa; /* Light background color */
@@ -47,8 +14,8 @@
         border-radius: 5px;
     }
 </style>
+
 <div class="container-fluid py-5">
-    <!-- Tables Section -->
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-xl-8 text-center">
             <h3 class="fw-bold mb-4">Menu</h3>
@@ -59,47 +26,38 @@
             </p>
         </div>
     </div>
-    <div class="row container-fluid" style="margin-left:22em;">
-        <div class="col-md-6">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6 mb-5">
             <h2 class="mb-4">Write a Review</h2>
             <form action="" method="post">
                 {% csrf_token %}
-                {{form.media}}
+                {{ form.media }}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
             </form>
         </div>
     </div>
-</div>
-<div class="container-fluid py-5">
-    <!-- Tables Section -->
+
     <div class="row d-flex justify-content-center">
-        <div class="col-md-10 col-xl-8 text-center">
-            <h3 class="fw-bold mb-4">Menu</h3>
-            <p class="mb-4 pb-2 mb-md-5 pb-md-0">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
-                numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
-                quisquam eum porro a pariatur veniam.
-            </p>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <h2 class="mb-4">Reviews that you've left in the past</h2>
-        <div class="user-review-list">
-            {% for review in user_reviews %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ review.dish.name }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Rated: {{ review.stars }} Stars</h6>
-                    <p class="card-text">{{ review.description }}</p>
-                    <p class="card-text"><small class="text-muted">By: {{ review.user }}</small></p>
-                    <a class="image-button" href="{%url 'review_update' review.id%}">Update</a>
-                    <a class="delete-button" method="post" href="{%url 'review_delete' review.id%}">Delete</a>
+        <div class="col-md-8">
+            <h2 class="mb-4">Reviews that you've left in the past</h2>
+            <div class="user-review-list">
+                {% for review in user_reviews %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ review.dish.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Rated: {{ review.stars }} Stars</h6>
+                        <p class="card-text">{{ review.description }}</p>
+                        <p class="card-text"><small class="text-muted">By: {{ review.user }}</small></p>
+                        <a class="image-button" href="{% url 'review_update' review.id %}">Update</a>
+                        <a class="delete-button" href="{% url 'review_delete' review.id %}">Delete</a>
+                    </div>
                 </div>
+                {% empty %}
+                <p>No reviews found.</p>
+                {% endfor %}
             </div>
-            {% empty %}
-            <p>No reviews found.</p>
-            {% endfor %}
         </div>
     </div>
 </div>
