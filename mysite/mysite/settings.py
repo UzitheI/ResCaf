@@ -38,7 +38,7 @@ SECRET_KEY = 'django-insecure-e^ir_c+eta71blp2!*b()w^nm06aqaa$%)nmee(wef#-pugos4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
