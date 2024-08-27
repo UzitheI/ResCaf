@@ -95,6 +95,8 @@ MIDDLEWARE = [
 
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
